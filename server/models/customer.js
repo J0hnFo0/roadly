@@ -20,7 +20,7 @@ const CustomerSchema = new mongoose.Schema({
     day: [0, 1, 3, 4, 5], // TODO
   },
   interval: { type: Number }, // TODO
-  driver: { type: Schema.Types.ObjectId, ref: 'Driver' },
+  car: { type: Schema.Types.ObjectId, ref: 'Car' },
   tav: { type: String },
   notes: {type: String },
 },
