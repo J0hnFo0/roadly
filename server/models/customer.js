@@ -5,16 +5,24 @@ const CustomerSchema = new mongoose.Schema({
     first: String,
     last: String,
   },
-  sex: {
-    type: Number,
-    enum: [1, 2],
-  },
+  customerNb: { type: Number },
   adress: {
     street: String,
     number: Number,
     city: String,
     zipcode: Number,
   },
+  maxAmount: { type: Number },
+  startDate: { type: Date },
+  interval: {
+    month: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    week: [0, 1, 2, 3],
+    day: [0, 1, 3, 4, 5], // TODO
+  },
+  interval: { type: Number }, // TODO
+  driver: { type: Schema.Types.ObjectId, ref: 'Driver' },
+  tav: { type: String },
+  notes: {type: String },
 },
   {
     timestamps: {
