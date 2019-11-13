@@ -23,7 +23,7 @@ class CustomerList extends React.Component {
     const query = this.state.query;
 
     try {
-      const response = await fetch(`http://localhost:3030/api/kunden?nachname=${query}`)
+      const response = await fetch(`http://localhost:3036/api/customers?nachname=${query}`)
       const list = await response.json()
 
       if (!list) {
@@ -68,7 +68,7 @@ class CustomerList extends React.Component {
             className='btn btn-primary'
             to='/bearbeiten'
           >
-            Kunden anlegen
+            customers anlegen
           </Link>
         </TaskPanel>
         <SearchInput

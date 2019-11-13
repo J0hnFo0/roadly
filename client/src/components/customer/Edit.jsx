@@ -23,7 +23,7 @@ class Edit extends React.Component {
   async delete() {
     const id = this.props.id;
 
-    const url = `http://localhost:3030/api/kunden/${id}`;
+    const url = `http://localhost:3036/api/customers/${id}`;
     await fetch(url, {
       method: 'DELETE',
     });
@@ -37,7 +37,7 @@ class Edit extends React.Component {
     const id = this.props.id;
 
     try {
-      const response = await fetch(`http://localhost:3030/api/kunden/${id}`)
+      const response = await fetch(`http://localhost:3036/api/customers/${id}`)
       const customer = await response.json();
 
       this.setState({
@@ -88,7 +88,7 @@ class Edit extends React.Component {
     };
 
     try {
-      const url = `http://localhost:3030/api/kunden/${id}`;
+      const url = `http://localhost:3036/api/customers/${id}`;
       await fetch(url, {
         method: 'PUT',
         headers: {
@@ -128,7 +128,7 @@ class Edit extends React.Component {
     return (
       <div className='container'>
         <div className="page-header">
-          <h1>Kunden bearbeiten</h1>
+          <h1>customers bearbeiten</h1>
         </div>
         {this.state.isError ? <FetchError />: this.renderForm()}
       </div>

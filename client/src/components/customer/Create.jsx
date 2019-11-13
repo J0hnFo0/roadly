@@ -53,7 +53,7 @@ class Create extends React.Component {
     };
 
     try {
-      const url = `http://localhost:3030/api/kunden/`;
+      const url = `http://localhost:3036/api/customers/`;
       await fetch(url, {
         method: 'POST',
         headers: {
@@ -88,7 +88,7 @@ class Create extends React.Component {
     return (
       <div className='container'>
         <div className='page-header'>
-          <h1>Kunden anlegen</h1>
+          <h1>customers anlegen</h1>
         </div>
         {this.state.isError ? <FetchError /> : this.renderForm()}
       </div>
