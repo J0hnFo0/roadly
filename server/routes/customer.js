@@ -6,6 +6,10 @@ const Customer = require('../models/customer');
 
 // GET one customer by "nachname". If !nachname get list of all
 router.get('/', (req, res, next) => {
+
+  return {
+    success: true,
+  }
   if (req.query.nachname) {
     const lastName = req.query.nachname;
 
