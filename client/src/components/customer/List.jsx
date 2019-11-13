@@ -102,7 +102,7 @@ class CustomerList extends React.Component {
           <Link
             to={`/bearbeiten/${x._id}`}
             className='btn btn-primary'>
-            Anzeigen
+            Anzeiconstgen
           </Link>
         </td>
       </tr>
