@@ -60,7 +60,7 @@ class CustomerList extends React.Component {
     return (
       <div className='container'>
         <div className='page-header'>
-          <h1>Royal Customer Management</h1>
+          <h1>Roadly - Next Level Fahrtenmanagement</h1>
         </div>
 
         <TaskPanel>

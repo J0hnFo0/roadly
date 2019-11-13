@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import CustomerIndex from './customer/Index';
+import CustomerIndex from './components/customer/Index';
 
 class App extends React.Component {
   render() {
