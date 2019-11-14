@@ -6,10 +6,6 @@ const Customer = require('../models/customer');
 
 // GET one customer by "nachname". If !nachname get list of all
 router.get('/', (req, res, next) => {
-
-  return {
-    success: true,
-  }
   if (req.query.nachname) {
     const lastName = req.query.nachname;
 
@@ -58,7 +54,8 @@ router.put('/:id', (req, res, next) => {
 
   Customer.findByIdAndUpdate(id, customer)
     .then(() => {
-      res.json('customer updated')    })
+      res.json({customer});       
+    })
     .catch(err => next(err));
 })
 
@@ -68,7 +65,9 @@ router.delete('/:id', (req, res, next) => {
 
   Customer.findByIdAndRemove(id)
     .then(() => {
-      res.json('customer deleted')
+      res.json({
+        success: true
+      });    
     })
     .catch(err => next(err));
 })

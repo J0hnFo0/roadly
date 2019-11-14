@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CustomerSchema = new mongoose.Schema({
+  company: { type: String },
   name: {
     first: String,
     last: String,
@@ -16,14 +17,14 @@ const CustomerSchema = new mongoose.Schema({
   maxAmount: { type: Number },
   startDate: { type: Date },
   interval: {
-    month: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    week: [0, 1, 2, 3],
-    day: [0, 1, 3, 4, 5], // TODO
+    month: Number,
+    week: Number,
+    day: Number, // TODO
   },
   interval: { type: Number }, // TODO
   car: { type: Schema.Types.ObjectId, ref: 'Car' },
   tav: { type: String },
-  notes: {type: String },
+  notes: { type: String },
 },
   {
     timestamps: {

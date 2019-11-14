@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import FetchError from '../shared/FetchError';
-import Form from '../shared/Form';
+import Form from './Form';
 
 class Create extends React.Component {
   constructor(props) {
