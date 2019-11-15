@@ -58,7 +58,7 @@ class CustomerList extends React.Component {
 
     return (
       <div className='container'>
-        <div className='page-header'>
+        <div className='pb-2 mt-4 mb-4 border-bottom'>
           <h1>Roadly - Next Level Fahrtenmanagement</h1>
         </div>
 
@@ -67,7 +67,7 @@ class CustomerList extends React.Component {
             className='btn btn-primary'
             to='/bearbeiten'
           >
-            customers anlegen
+            Kunden anlegen
           </Link>
         </TaskPanel>
         <SearchInput
@@ -101,7 +101,7 @@ class CustomerList extends React.Component {
           <Link
             to={`/bearbeiten/${x._id}`}
             className='btn btn-primary'>
-            Anzeiconstgen
+            Anzeigen
           </Link>
         </td>
       </tr>

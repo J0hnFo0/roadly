@@ -87,8 +87,8 @@ class Create extends React.Component {
   render() {
     return (
       <div className='container'>
-        <div className='page-header'>
-          <h1>customers anlegen</h1>
+        <div className='pb-2 mt-4 mb-4 border-bottom'>
+          <h1>Kunden anlegen</h1>
         </div>
         {this.state.isError ? <FetchError /> : this.renderForm()}
       </div>

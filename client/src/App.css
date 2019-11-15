@@ -20,3 +20,10 @@
 .App-link {
   color: #09d3ac;
 }
+
+.page-header {
+  padding-bottom: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px;
+}

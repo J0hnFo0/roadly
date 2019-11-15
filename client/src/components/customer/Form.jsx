@@ -193,7 +193,7 @@ class CustomerForm extends React.PureComponent {
         className='btn btn-danger mr-2'
         onClick={this.props.handleDelete}
       >
-        customersdaten löschen
+        Löschen
       </button>
     )
   }
