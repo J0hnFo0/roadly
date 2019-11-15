@@ -53,7 +53,7 @@ class Create extends React.Component {
     };
 
     try {
-      const url = `${process.env.REACT_APP_BASE_URL}/api/customers/`;
+      const url = `${process.env.REACT_APP_API_BASE_URL}/api/customers/`;
       await fetch(url, {
         method: 'POST',
         headers: {

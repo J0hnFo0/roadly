@@ -23,7 +23,7 @@ class Edit extends React.Component {
   async delete() {
     const id = this.props.id;
 
-    const url = `${process.env.REACT_APP_BASE_URL}/api/customers/${id}`;
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/customers/${id}`;
     await fetch(url, {
       method: 'DELETE',
     });
@@ -37,7 +37,7 @@ class Edit extends React.Component {
     const id = this.props.id;
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/customers/${id}`)
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customers/${id}`)
       const customer = await response.json();
 
       this.setState({
@@ -88,7 +88,7 @@ class Edit extends React.Component {
     };
 
     try {
-      const url = `${process.env.REACT_APP_BASE_URL}/api/customers/${id}`;
+      const url = `${process.env.REACT_APP_API_BASE_URL}/api/customers/${id}`;
       await fetch(url, {
         method: 'PUT',
         headers: {
