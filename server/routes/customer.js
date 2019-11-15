@@ -4,12 +4,19 @@ const router = express.Router();
 // Require customer model
 const Customer = require('../models/customer');
 
+// Helpfer function to escape regex
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 // GET one customer by "nachname". If !nachname get list of all
 router.get('/', (req, res, next) => {
   if (req.query.nachname) {
     const lastName = req.query.nachname;
 
-    Customer.find({ 'name.last': lastName })
+    Customer.find({ 
+      'name.last':  { $regex: escapeRegex(lastName), $options: 'i '}
+    })
       .then(data => {
         res.json(data);
       })

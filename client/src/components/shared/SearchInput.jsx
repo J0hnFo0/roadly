@@ -17,7 +17,7 @@ class SearchInput extends React.PureComponent {
         <input
           className='form-control'
           type='search'
-          placeholder='Nach Nachname suchen'
+          placeholder='Nach Kundenname oder Firma suchen'
           onChange={(e) => this.props.onChange(e)}
           />
         <button

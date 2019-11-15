@@ -55,7 +55,6 @@ class CustomerList extends React.Component {
 
   render() {
     const state = this.state;
-    console.log(process.env.REACT_APP_BASE_URL)
 
     return (
       <div className='container'>
