@@ -23,7 +23,7 @@ class CustomerList extends React.Component {
     const query = this.state.query;
 
     try {
-      const response = await fetch(`http://localhost:3036/api/customers?nachname=${query}`)
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/customers?nachname=${query}`)
       const list = await response.json()
 
       if (!list) {
@@ -56,6 +56,7 @@ class CustomerList extends React.Component {
 
   render() {
     const state = this.state;
+    console.log(process.env.REACT_APP_BASE_URL)
 
     return (
       <div className='container'>

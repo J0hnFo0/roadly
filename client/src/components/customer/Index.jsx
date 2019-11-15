@@ -13,6 +13,8 @@ class CustomerIndex extends React.Component {
   }
 
   render() {
+    /* const baseUrl = this.props.match.url;
+    console.log("BASE", baseUrl) */
 
     return (
       <Switch>
