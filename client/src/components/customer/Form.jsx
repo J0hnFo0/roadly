@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Datepicker from 'react-datepicker';
 
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from '../shared/DatePicker';
 
 class CustomerForm extends React.PureComponent {
-
-  handleDate = (date) => {
-    console.log(date)
-  }
   render() {
     const props = this.props;
 
-    const startDate = new Date(props.startDate)
-    console.log("start", startDate)
     return (
       <form onSubmit={props.handleSubmit} >
 
@@ -158,13 +151,10 @@ class CustomerForm extends React.PureComponent {
             <div className="form-row">
               <div className='form-group col-md-6'>
                 <label htmlFor='startDate'>Startdatum</label>
-              
-                <Datepicker
-                  className="form-control"
-                  dateFormat="dd/MM/yyy"
-                  selected={startDate}
+                <DatePicker
+                  date={props.startDate}
                   onChange={props.handleDate}
-                  />
+                />
               </div>
               <div className='form-group col-md-6'>
                 <label htmlFor='pitSize'>Grubengröße</label>
