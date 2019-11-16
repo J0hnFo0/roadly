@@ -11,8 +11,8 @@ const CustomerSchema = new mongoose.Schema({
   adress: {
     street: String,
     number: Number,
-    city: String,
     zipcode: Number,
+    city: String,
   },
   maxAmount: { type: Number },
   startDate: { type: Date },
@@ -21,9 +21,10 @@ const CustomerSchema = new mongoose.Schema({
     week: Number,
     day: Number, // TODO
   },
+  tavArea: { type: String },
+  pitSize: { type: Number},
   interval: { type: Number }, // TODO
   car: { type: Schema.Types.ObjectId, ref: 'Car' },
-  tav: { type: String },
   notes: { type: String },
 },
   {

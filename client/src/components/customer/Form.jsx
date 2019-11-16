@@ -13,11 +13,11 @@ class CustomerForm extends React.PureComponent {
 
         <div className="form-row">
           <div className='form-group col-md-6'>
-            <label htmlFor='cNumber'>Kundennummer</label>
+            <label htmlFor='customerNb'>Kundennummer</label>
             <input
               type='text'
+              id='customerNb'
               className='form-control'
-              id='cNumber'
               value="TODO"
               onChange={props.handleChange}
               required={true}
@@ -32,8 +32,8 @@ class CustomerForm extends React.PureComponent {
             </small>
             <input
               type='text'
-              className='form-control'
               id='company'
+              className='form-control'
               value="TODO"
               onChange={props.handleChange}
               required={true}
@@ -47,8 +47,8 @@ class CustomerForm extends React.PureComponent {
             <label htmlFor='nameFirst'>Vorname</label>
             <input
               type='text'
-              className='form-control'
               id='nameFirst'
+              className='form-control'
               value={props.nameFirst}
               onChange={props.handleChange}
               required={true}
@@ -110,7 +110,7 @@ class CustomerForm extends React.PureComponent {
                   required={true}
                 />
               </div>
-              <div className='form-group col-md-'>
+              <div className='form-group col-md-  '>
                 <label htmlFor='city'>Stadt</label>
                 <input
                   type='text'
