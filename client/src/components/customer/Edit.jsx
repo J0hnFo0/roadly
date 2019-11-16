@@ -9,6 +9,8 @@ class Edit extends React.Component {
     super(props)
 
     this.state = {
+      startDate: new Date,
+
       isDeleted: false,
       isError: false,
       isSaved: false,
@@ -17,6 +19,7 @@ class Edit extends React.Component {
     this.delete = this.delete.bind(this);
     this.getCustomer = this.getCustomer.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDate = this.handleDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,13 +45,20 @@ class Edit extends React.Component {
 
       this.setState({
         id: customer._id,
-        sex: customer.sex,
+        company: customer.company,
         nameFirst: customer.name.first,
         nameLast: customer.name.last,
+        customerNumber: customer.customerNumber,
         street: customer.adress.street,
         number: customer.adress.number,
         city: customer.adress.city,
         zipcode: customer.adress.zipcode,
+        startDate: customer.startDate, 
+        tavArea: customer.tavArea,
+        pitSize: customer.pitSize,
+        interval: customer.interval,
+        car: customer.car,
+        notes: customer.notes
       });
 
     } catch {
@@ -67,6 +77,12 @@ class Edit extends React.Component {
     this.setState(value);
   }
 
+  handleDate = date => {
+    this.setState({
+      startDate: date
+    });
+  };
+
   async handleSubmit(e) {
     e.preventDefault();
 
@@ -74,17 +90,24 @@ class Edit extends React.Component {
 
     const state = this.state;
     const customer = {
+      company: state.company,
       name: {
         first: state.nameFirst,
         last: state.nameLast,
       },
-      sex: state.sex,
+      customerNumber: state.customerNumber,
       adress: {
         street: state.street,
         number: state.number,
         city: state.city,
         zipcode: state.zipcode,
-      }
+      },
+      startDate: state.startDate,
+      tavArea: state.tavArea,
+      pitSize: state.pitSize,
+      interval: state.interval,
+      car: state.car,
+      notes: state.notes,
     };
 
     try {
@@ -146,14 +169,23 @@ class Edit extends React.Component {
         {this.redirect()}
         <Form
           id={state.id}
+          company={state.company}
           nameFirst={state.nameFirst}
           nameLast={state.nameLast}
-          sex={state.sex}
+          customerNumber={state.customerNumber}
           street={state.street}
           number={state.number}
           city={state.city}
           zipcode={state.zipcode}
+          startDate={state.startDate}
+          tavArea={state.tavArea}
+          pitSize={state.pitSize}
+          interval={state.interval}
+          car={state.car}
+          notes={state.notes}
+
           handleChange={this.handleChange}
+          handleDate={this.handleDate}
           handleSubmit={this.handleSubmit}
           handleDelete={this.delete}
         />

@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Datepicker from 'react-datepicker';
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class CustomerForm extends React.PureComponent {
+
+  handleDate = (date) => {
+    console.log(date)
+  }
   render() {
     const props = this.props;
 
+    const startDate = new Date(props.startDate)
+    console.log("start", startDate)
     return (
       <form onSubmit={props.handleSubmit} >
 
@@ -13,12 +22,12 @@ class CustomerForm extends React.PureComponent {
 
         <div className="form-row">
           <div className='form-group col-md-6'>
-            <label htmlFor='customerNb'>Kundennummer</label>
+            <label htmlFor='customerNumber'>Kundennummer</label>
             <input
               type='text'
-              id='customerNb'
+              id='customerNumber'
               className='form-control'
-              value="TODO"
+              value={props.customerNumber}
               onChange={props.handleChange}
               required={true}
             />
@@ -34,7 +43,7 @@ class CustomerForm extends React.PureComponent {
               type='text'
               id='company'
               className='form-control'
-              value="TODO"
+              value={props.company}
               onChange={props.handleChange}
               required={true}
             />
@@ -69,12 +78,12 @@ class CustomerForm extends React.PureComponent {
         </div>
 
         <div className="form-row">
-          <div className="col-md-8">
+          <div className="col-md-6  ">
             <h4>Adresse</h4>
             <hr />
 
             <div className='form-row'>
-              <div className='form-group col-md-6'>
+              <div className='form-group col-md-8'>
                 <label htmlFor='street'>Straße</label>
                 <input
                   type='text'
@@ -99,7 +108,7 @@ class CustomerForm extends React.PureComponent {
               </div>
             </div>
             <div className='form-row'>
-              <div className='form-group col-md-2'>
+              <div className='form-group col-md-4'>
                 <label htmlFor='zipcode'>Postleitzahl</label>
                 <input
                   type='number'
@@ -110,7 +119,7 @@ class CustomerForm extends React.PureComponent {
                   required={true}
                 />
               </div>
-              <div className='form-group col-md-  '>
+              <div className='form-group col-md-6'>
                 <label htmlFor='city'>Stadt</label>
                 <input
                   type='text'
@@ -124,7 +133,7 @@ class CustomerForm extends React.PureComponent {
             </div>
           </div>
 
-          <div className="col-md-4">
+          <div className="col-md-6">
             <h4>TAV</h4>
             <hr />
             <div className='form-group'>
@@ -133,7 +142,7 @@ class CustomerForm extends React.PureComponent {
                 type='number'
                 className='form-control'
                 id='tavArea'
-                value={"1234"}
+                value={props.tavArea}
                 onChange={props.handleChange}
                 required={true}
               />
@@ -141,58 +150,86 @@ class CustomerForm extends React.PureComponent {
           </div>
         </div>
 
-        <h4>Abholung</h4>
-        <hr />
         <div className="form-row">
-          <div className='form-group col-md-3'>
-            <label htmlFor='startDate'>Startdatum</label>
-            <input
-              type='date'
-              className='form-control'
-              id='startDate'
-              value={"TODO"}
-              onChange={props.handleChange}
-              required={true}
-            />
-          </div>
-          <div className='form-group col-md-3'>
+          <div className="col-md-6">
+            <h4>Abholung</h4>
+            <hr />
 
-            <label htmlFor='pitSize'>Grubengröße</label>
-            <div className="input-group">
-              <input
-                type='number'
-                className='form-control'
-                id='pitSize'
-                value={"1234"}
-                onChange={props.handleChange}
-                required={true}
-              />
-              <div class="input-group-append">
-                <span class="input-group-text">m³</span>
+            <div className="form-row">
+              <div className='form-group col-md-6'>
+                <label htmlFor='startDate'>Startdatum</label>
+              
+                <Datepicker
+                  className="form-control"
+                  dateFormat="dd/MM/yyy"
+                  selected={startDate}
+                  onChange={props.handleDate}
+                  />
+              </div>
+              <div className='form-group col-md-6'>
+                <label htmlFor='pitSize'>Grubengröße</label>
+                <div className="input-group">
+                  <input
+                    type='number'
+                    className='form-control'
+                    id='pitSize'
+                    value={props.pitSize}
+                    onChange={props.handleChange}
+                    required={true}
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">m³</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className='form-group col-md-6'>
+                <label htmlFor='interval'>Intervall</label>
+                <input
+                  type='number'
+                  className='form-control'
+                  id='interval'
+                  value={props.interval}
+                  onChange={props.handleChange}
+                  required={true}
+                />
+              </div>
+              <div className='form-group col-md-6'>
+                <label htmlFor='car'>Fahrzeug</label>
+                <select
+                  id="car"
+                  className="form-control"
+                  onChange={props.handleChange}
+                  value={props.car}
+                >
+                  <option value="grapefruit">Grapefruit</option>
+                  <option value="lime">Lime</option>
+                  <option selected value="coconut">Coconut</option>
+                  <option value="mango">Mango</option>
+                </select>
               </div>
             </div>
           </div>
 
-          <div className='form-group col-md-3'>
-            <label htmlFor='interval'>Intervall</label>
-            <input
-              type='number'
-              className='form-control'
-              id='interval'
-              value={"1234"}
-              onChange={props.handleChange}
-              required={true}
-            />
+          <div className="col-md-6">
+            <h4>Notizen</h4>
+            <hr />
+
+            <div class="form-group">
+              <label for="notes">Notizen</label>
+              <textarea
+                id="notes"
+                class="form-control"
+                rows="4"
+                onChange={props.handleChange}
+                value={props.notes}
+              />
+            </div>
+
           </div>
-          <div className='form-group col-md-3'>
-            <label htmlFor='car'>Fahrzeug</label>
-            <select className="form-control" id="car">
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option selected value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-            </select>
-          </div>
+
         </div>
 
         <button

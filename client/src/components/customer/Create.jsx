@@ -22,6 +22,7 @@ class Create extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleDate = this.handleDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -34,22 +35,36 @@ class Create extends React.Component {
     this.setState(value);
   }
 
+  handleDate = date => {
+    this.setState({
+      startDate: date
+    });
+  };
+
   async handleSubmit(e) {
     e.preventDefault();
 
     const state = this.state;
+    
     const customer = {
+      company: state.company,
       name: {
         first: state.nameFirst,
         last: state.nameLast,
       },
-      sex: state.sex,
+      customerNumber: state.customerNumber,
       adress: {
         street: state.street,
         number: state.number,
         city: state.city,
         zipcode: state.zipcode,
-      }
+      },
+      startDate: state.startDate,
+      tavArea: state.tavArea,
+      pitSize: state.pitSize,
+      interval: state.interval,
+      car: state.car,
+      notes: state.notes,
     };
 
     try {
@@ -102,14 +117,24 @@ class Create extends React.Component {
       <React.Fragment>
         {this.redirect()}
         <Form
+          id={state.id}
+          company={state.company}
           nameFirst={state.nameFirst}
           nameLast={state.nameLast}
-          sex={state.sex}
+          customerNumber={state.customerNumber}
           street={state.street}
           number={state.number}
           city={state.city}
           zipcode={state.zipcode}
+          startDate={state.startDate}
+          tavArea={state.tavArea}
+          pitSize={state.pitSize}
+          interval={state.interval}
+          car={state.car}
+          notes={state.notes}
+
           handleChange={this.handleChange}
+          handleDate={this.handleDate}
           handleSubmit={this.handleSubmit}
         />
       </React.Fragment>

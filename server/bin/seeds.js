@@ -18,7 +18,7 @@ const firstCustomers = [
             city: 'Hamburg',
             zipcode: 0815,
         },
-        maxAmount: 12,
+        pitSize: 12,
         startDate: 2019 - 11 - 01,
         tav: 789,
         notes: 'This is a test customer, seeded by the Seeds that Christian created.',
