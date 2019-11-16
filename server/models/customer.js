@@ -16,14 +16,9 @@ const CustomerSchema = new mongoose.Schema({
   },
   maxAmount: { type: Number },
   startDate: { type: Date },
-  interval: {
-    month: Number,
-    week: Number,
-    day: Number, // TODO
-  },
   tavArea: { type: String },
   pitSize: { type: Number},
-  interval: { type: Number }, // TODO
+  interval: { type: Number }, 
   car: { type: Schema.Types.ObjectId, ref: 'Car' },
   notes: { type: String },
 },
