@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 import CustomerIndex from './components/customer/Index';
+import RidesIndex from './components/ride/Index';
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
   renderContent() {
     return (
       <Switch>
+        <Route path="/fahrten" render={this.renderRides} />
         <Route path="/" render={this.renderCustomers} />
       </Switch>
     );
@@ -23,6 +25,12 @@ class App extends React.Component {
   renderCustomers() {
     return (
       <CustomerIndex />
+    );
+  }
+
+  renderRides() {
+    return (
+      <RidesIndex />
     );
   }
 }
