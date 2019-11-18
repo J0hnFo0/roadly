@@ -16,6 +16,7 @@ class Create extends React.Component {
       number: '',
       city: '',
       zipcode: '',
+      startDate: new Date(),
 
       isError: false,
       isSaved: false,

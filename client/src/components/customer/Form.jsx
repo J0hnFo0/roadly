@@ -253,8 +253,6 @@ class CustomerForm extends React.PureComponent {
       </button>
     )
   }
-
-
 }
 
 export default CustomerForm;
