@@ -1,20 +1,20 @@
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var cookieParser = require('cookie-parser');
-var express = require('express');
-var logger = require('morgan');
-var path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
 
 // Router
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const customerRouter = require('./routes/customer');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const customersRouter = require('./routes/customers');
+const ridesRouter = require('./routes/rides');
 
 // DB connection
 require('./configs/database');
 
-var app = express();
-
+const app = express();
 
 // Middlewares
 app.use(cors());
@@ -28,7 +28,8 @@ app.use(bodyParser.json());
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/customers', customerRouter);
+app.use('/api/customers', customersRouter);
+app.use('/api/rides', ridesRouter);
 
 // Catch 404 error for any route that start with "/api"
 app.use('/api/*', (req, res, next) => {
