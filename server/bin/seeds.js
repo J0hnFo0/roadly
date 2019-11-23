@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Customer = require('../models/customer');
+const Customer = require('../models/Customer');
 
 const dbName = 'roadly-db';
 mongoose.connect(`mongodb://localhost/${dbName}`);
@@ -19,7 +19,43 @@ const firstCustomers = [
             zipcode: 0815,
         },
         pitSize: 12,
-        startDate: 2019 - 11 - 01,
+        startDate: '2019-11-11 09:51:43.000',
+        tav: 789,
+        notes: 'This is a test customer, seeded by the Seeds that Christian created.',
+    },
+    {
+        company: 'Die Öffentlich-Rechtlichen GmbH',
+        name: {
+            first: 'Gundula',
+            last: 'Gause',
+        },
+
+        adress: {
+            street: 'Tagestehmenstreet',
+            number: 8,
+            city: 'Berlin',
+            zipcode: 0815,
+        },
+        pitSize: 12,
+        startDate: '2019-11-20 09:51:43.000',
+        tav: 789,
+        notes: 'This is a test customer, seeded by the Seeds that Christian created.',
+    },
+    {
+        company: 'Ducktales Gesellschaft für Quack mbH',
+        name: {
+            first: 'Donald',
+            last: 'Duck',
+        },
+
+        adress: {
+            street: 'Somestreet',
+            number: 1,
+            city: 'Entenhause',
+            zipcode: 0815,
+        },
+        pitSize: 12,
+        startDate: '2019-10-20 09:51:43.000',
         tav: 789,
         notes: 'This is a test customer, seeded by the Seeds that Christian created.',
     },
