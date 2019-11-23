@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Require customer model
-const Customer = require('../models/customer');
+const Customer = require('../models/Customer');
 
 // Helpfer function to escape regex
 function escapeRegex(text) {
