@@ -5,13 +5,13 @@ const dbName = 'roadly-db';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 const firstCustomers = [
-    {
+    {   
         company: 'Die Mannschaft GmbH',
         name: {
             first: 'Lothar',
             last: 'Mätthaus',
         },
-
+        customerNumber: 123,
         adress: {
             street: 'Finkenweg',
             number: 7,
@@ -20,7 +20,8 @@ const firstCustomers = [
         },
         pitSize: 12,
         startDate: '2019-11-11 09:51:43.000',
-        tav: 789,
+        interval: 1,
+        tavArea: 789,
         notes: 'This is a test customer, seeded by the Seeds that Christian created.',
     },
     {
@@ -29,7 +30,7 @@ const firstCustomers = [
             first: 'Gundula',
             last: 'Gause',
         },
-
+        customerNumber: 123,
         adress: {
             street: 'Tagestehmenstreet',
             number: 8,
@@ -37,8 +38,9 @@ const firstCustomers = [
             zipcode: 0815,
         },
         pitSize: 12,
+        interval: 1,
         startDate: '2019-11-20 09:51:43.000',
-        tav: 789,
+        tavArea: 789,
         notes: 'This is a test customer, seeded by the Seeds that Christian created.',
     },
     {
@@ -47,7 +49,7 @@ const firstCustomers = [
             first: 'Donald',
             last: 'Duck',
         },
-
+        customerNumber: 123,
         adress: {
             street: 'Somestreet',
             number: 1,
@@ -55,8 +57,9 @@ const firstCustomers = [
             zipcode: 0815,
         },
         pitSize: 12,
+        interval: 1,
         startDate: '2019-10-20 09:51:43.000',
-        tav: 789,
+        tavArea: 789,
         notes: 'This is a test customer, seeded by the Seeds that Christian created.',
     },
 ];
