@@ -75,19 +75,25 @@ class RideList extends React.PureComponent {
         if (!this.state.rides) {
             return;
         }
-        
+
         const rides = this.state.rides.map((x, i) =>
             <React.Fragment>
                 <tr id={i}>
                     <td>{i + 1}</td>
-                    <td>{x.consumer.name.first} {x.consumer.name.last}</td>
+                    <td>
+                        {
+                            x.consumer.company
+                                ? x.consumer.company
+                                : `${x.consumer.name.first} ${x.consumer.name.last}`
+                        }
+                    </td>
                     <td>{x.consumer.adress.city}</td>
                     <td>{x.consumer.adress.street}</td>
                     <td>{x.consumer.adress.number}</td>
                     <td>{x.consumer.adress.zipcode}</td>
                     <td>{x.quantity}</td>
                     <td>{x.consumer.interval}</td>
-                    <td>{x.notes}</td>
+                    <td>{x.notes ? x.notes : "./."}</td>
                     <td>
                         <button className="btn btn-sm btn-outline-info">
                             Details
