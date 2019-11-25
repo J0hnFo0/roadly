@@ -32,6 +32,8 @@ class RideList extends React.PureComponent {
     }
 
     render() {
+        const today = new Date()
+
         return (
             <div className="container">
                 <div className='pb-2 mt-4 mb-4 border-bottom'>
@@ -44,7 +46,7 @@ class RideList extends React.PureComponent {
                 </TaskPanel>
 
                 <div className="card">
-                    <h5 className="card-header">Fahrten für 19.11.2019</h5>
+                    <h5 className="card-header">{today.toDateString()}</h5>
                     <div className="card-body p-0">
                         <table className="table mb-0">
                             <thead>
@@ -60,39 +62,7 @@ class RideList extends React.PureComponent {
                                 <th>Auswahl</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Gustav Ganz</td>
-                                    <td>Entenhausen</td>
-                                    <td>Gülleweg</td>
-                                    <td>13</td>
-                                    <td>0815</td>
-                                    <td>12</td>
-                                    <td>1</td>
-                                    <td>Bitte vorsichtig. Kunde schnappt.</td>
-                                    <td>
-                                        <button className="btn btn-sm btn-outline-info">
-                                            Details
-                                </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Boring Company</td>
-                                    <td>Silicon Valley</td>
-                                    <td>Facebookalley</td>
-                                    <td>5</td>
-                                    <td>0815</td>
-                                    <td>1000</td>
-                                    <td>4</td>
-                                    <td>Bitte vorsichtig. Kunde hat Flammenwerfer.</td>
-                                    <td>
-                                        <button className="btn btn-sm btn-outline-info">
-                                            Details
-                                </button>
-                                    </td>
-                                </tr>
-                                {this.renderTable()}
+                                {this.renderTableBody()}
                             </tbody>
                         </table>
                     </div>
@@ -101,23 +71,23 @@ class RideList extends React.PureComponent {
         );
     }
 
-    renderTable() {
+    renderTableBody() {
         if (!this.state.rides) {
             return;
         }
-
-        const rides = this.state.rides.map(() => 
+        
+        const rides = this.state.rides.map((x, i) =>
             <React.Fragment>
-                <tr>
-                    <td>3</td>
-                    <td>Boring Company</td>
-                    <td>Silicon Valley</td>
-                    <td>Facebookalley</td>
-                    <td>5</td>
-                    <td>0815</td>
-                    <td>1000</td>
-                    <td>4</td>
-                    <td>Bitte vorsichtig. Kunde hat Flammenwerfer.</td>
+                <tr id={i}>
+                    <td>{i + 1}</td>
+                    <td>{x.consumer.name.first} {x.consumer.name.last}</td>
+                    <td>{x.consumer.adress.city}</td>
+                    <td>{x.consumer.adress.street}</td>
+                    <td>{x.consumer.adress.number}</td>
+                    <td>{x.consumer.adress.zipcode}</td>
+                    <td>{x.quantity}</td>
+                    <td>{x.consumer.interval}</td>
+                    <td>{x.notes}</td>
                     <td>
                         <button className="btn btn-sm btn-outline-info">
                             Details

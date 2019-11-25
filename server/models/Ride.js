@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const RideSchema = new mongoose.Schema({
   consumer: { type: Schema.Types.ObjectId, ref: 'Customer' },
   date: { type: Date },
-  quantity: { type: mongoose.Decimal128 },
+  quantity: { type: Number },
   state: { type: Number },
   reasonForRejection: { type: String },
   reasonForDelegation: { type: String },

@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
     .populate('consumer')
     .then(rides => {
       res.json({
-        rides
+        rides 
       });
     })
     .catch(err => next(err));

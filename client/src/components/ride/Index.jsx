@@ -4,11 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import List from './List';
 
 class RideIndex extends React.Component {
-    constructor(props) {
-        super(props)
-
-
-    }
 
     render() {
         return (
