@@ -18,9 +18,8 @@ function createUTC() {
 // GET Rides for current day
 router.get('/', (req, res, next) => {
   const UTC = createUTC();
-  Ride.find({
-    date: UTC
-  })
+  Ride.find({ date: UTC })
+    .populate('consumer')
     .then(rides => {
       res.json({
         rides

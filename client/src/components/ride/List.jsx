@@ -6,7 +6,7 @@ class RideList extends React.PureComponent {
     constructor(props) {
         super(props)
 
-        this.state ={
+        this.state = {
             isError: false
         }
     }
@@ -32,8 +32,6 @@ class RideList extends React.PureComponent {
     }
 
     render() {
-        
-
         return (
             <div className="container">
                 <div className='pb-2 mt-4 mb-4 border-bottom'>
@@ -41,8 +39,8 @@ class RideList extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                        <button className="btn btn-primary mr-1">Fahrt hinzufügen</button>
-                        <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
+                    <button className="btn btn-primary mr-1">Fahrt hinzufügen</button>
+                    <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
                 </TaskPanel>
 
                 <div className="card">
@@ -94,12 +92,42 @@ class RideList extends React.PureComponent {
                                 </button>
                                     </td>
                                 </tr>
+                                {this.renderTable()}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    renderTable() {
+        if (!this.state.rides) {
+            return;
+        }
+
+        const rides = this.state.rides.map(() => 
+            <React.Fragment>
+                <tr>
+                    <td>3</td>
+                    <td>Boring Company</td>
+                    <td>Silicon Valley</td>
+                    <td>Facebookalley</td>
+                    <td>5</td>
+                    <td>0815</td>
+                    <td>1000</td>
+                    <td>4</td>
+                    <td>Bitte vorsichtig. Kunde hat Flammenwerfer.</td>
+                    <td>
+                        <button className="btn btn-sm btn-outline-info">
+                            Details
+                                </button>
+                    </td>
+                </tr>
+            </React.Fragment>
+        );
+
+        return rides;
     }
 }
 
