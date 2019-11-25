@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Require customer model
+// Require models
 const Customer = require('../models/Customer');
+const Ride = require('../models/Ride');
 
 // Helpfer function to escape regex
 function escapeRegex(text) {
@@ -50,6 +51,9 @@ router.post('/', (req, res, next) => {
     .save()
     .then(() => {
       res.json(customer);
+
+
+
     })
     .catch(err => next(err));
 });
