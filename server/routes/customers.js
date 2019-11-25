@@ -5,7 +5,7 @@ const router = express.Router();
 const Customer = require('../models/Customer');
 const Ride = require('../models/Ride');
 
-// Helpfer function to escape regex
+// Helper function to escape regex
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
@@ -59,12 +59,18 @@ router.post('/', (req, res, next) => {
         state: 0
       }
 
-      let pickUpDate = new Date(customer.startDate)
-      
+      cD = customer.startDate;
+
+      let pickUpDate = new Date(
+        Date.UTC(cD.getUTCFullYear(), cD.getMonth(), cD.getDate())
+      )
+
       for (let i = 0; i < pickUpsPerYear; i++) {
+
         ride.date = pickUpDate.setDate(
           pickUpDate.getDate() + customer.interval * 7
         );
+
         Ride.create(ride);
       }
 
