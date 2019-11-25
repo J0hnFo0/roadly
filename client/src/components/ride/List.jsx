@@ -3,7 +3,37 @@ import React from 'react';
 import TaskPanel from '../shared/TaskPanel';
 
 class RideList extends React.PureComponent {
+    constructor(props) {
+        super(props)
+
+        this.state ={
+            isError: false
+        }
+    }
+
+    async refresh() {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides`);
+            const result = await response.json();
+
+            this.setState({
+                rides: result.rides
+            });
+
+        } catch {
+            this.setState({
+                isError: true
+            });
+        }
+    }
+
+    componentDidMount() {
+        this.refresh();
+    }
+
     render() {
+        
+
         return (
             <div className="container">
                 <div className='pb-2 mt-4 mb-4 border-bottom'>

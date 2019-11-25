@@ -22,7 +22,6 @@ router.get('/', (req, res, next) => {
     date: UTC
   })
     .then(rides => {
-      console.log(createUTC(), UTC)
       res.json({
         rides
       });
