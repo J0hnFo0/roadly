@@ -15,8 +15,8 @@ router.get('/', (req, res, next) => {
   if (req.query.nachname) {
     const lastName = req.query.nachname;
 
-    Customer.find({ 
-      'name.last':  { $regex: escapeRegex(lastName), $options: 'i '}
+    Customer.find({
+      'name.last': { $regex: escapeRegex(lastName), $options: 'i ' }
     })
       .then(data => {
         res.json(data);
@@ -45,15 +45,30 @@ router.get('/:id', (req, res, next) => {
 
 // POST new customer
 router.post('/', (req, res, next) => {
-  const customer = req.body;
+  const newCustomer = req.body;
 
-  new Customer(customer)
+  new Customer(newCustomer)
     .save()
-    .then(() => {
+    .then((customer) => {
+
+      let pickUpsPerYear = 365 / (customer.interval * 7);
+
+      let ride = {
+        consumer: customer._id,
+        quantity: customer.pitSize,
+        state: 0
+      }
+
+      let pickUpDate = new Date(customer.startDate)
+      
+      for (let i = 0; i < pickUpsPerYear; i++) {
+        ride.date = pickUpDate.setDate(
+          pickUpDate.getDate() + customer.interval * 7
+        );
+        Ride.create(ride);
+      }
+
       res.json(customer);
-
-
-
     })
     .catch(err => next(err));
 });
@@ -65,7 +80,7 @@ router.put('/:id', (req, res, next) => {
 
   Customer.findByIdAndUpdate(id, customer)
     .then(() => {
-      res.json({customer});       
+      res.json({ customer });
     })
     .catch(err => next(err));
 })
@@ -78,7 +93,7 @@ router.delete('/:id', (req, res, next) => {
     .then(() => {
       res.json({
         success: true
-      });    
+      });
     })
     .catch(err => next(err));
 })

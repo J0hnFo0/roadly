@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 /* Ride states
  0 = open
  1 = done
@@ -8,12 +8,10 @@ const mongoose = require('mongoose');
 */
 
 const RideSchema = new mongoose.Schema({
-  consumer: { type: schema.types.ObjectId, ref: 'Customer' },
+  consumer: { type: Schema.Types.ObjectId, ref: 'Customer' },
   date: { type: Date },
   quantity: { type: mongoose.Decimal128 },
-  state: {
-    enum: [0, 1, 2, 3]
-  },
+  state: { type: Number },
   reasonForRejection: { type: String },
   reasonForDelegation: { type: String },
   notes: { type: String },
