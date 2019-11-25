@@ -11,10 +11,8 @@ class RideList extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                    <div className="d-flex">
                         <button className="btn btn-primary mr-1">Fahrt hinzufügen</button>
                         <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
-                    </div>
                 </TaskPanel>
 
                 <div className="card">

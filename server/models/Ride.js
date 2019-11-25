@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 
+/* Ride states
+ 0 = offen
+ 1 = erledigt
+ 2 = abgelehnt
+ 3 = deligiert
+*/
+
 const RideSchema = new mongoose.Schema({
   consumer: { type: schema.types.ObjectId, ref: 'Customer' },
   date: { type: String },

@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
       let startDate;
       let pickUpDate;
 
-      customers.forEach((x, i) => {
+/*       customers.forEach((x, i) => {
         startDate = new Date(x.startDate)
 
         pickUpDate = new Date(
@@ -25,9 +25,34 @@ router.get('/', (req, res, next) => {
           )
         )
 
-        console.log("start", i, startDate, "pick", pickUpDate, "current", currentDate)
+              console.log( i, "start", startDate, "pick", pickUpDate, "current", currentDate)
 
-      })
+      }) */
+
+     let pickUpsPerYear = 365 / (customers[0].interval * 7)
+
+      for (let i = 0; i < pickUpsPerYear; i++) {
+        startDate  = customers[0].startDate;
+
+        pickUpDate = new Date (
+          customers[0].startDate.setDate(
+            customers[0].startDate.getDate() + customers[0].interval * 7
+          )
+        )
+
+        list.push(pickUpDate);
+        
+      }
+
+      // Alternative: Calculate number of days between current date and start date
+      const oneDay = 24 * 60 * 60 * 1000;
+      const differenceInTime = customers[0].startDate.getTime() - currentDate.getTime();
+      const differenceInDays = Math.round(Math.abs((currentDate - customers[0].startDate) / oneDay ))
+
+      console.log("list", list, pickUpsPerYear, list.length,differenceInDays, customers[0].startDate, currentDate)
+
+
+
 
       res.json({
         sucess: true,
