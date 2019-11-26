@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
 
@@ -115,7 +116,12 @@ class RideDetails extends React.Component {
                         Ablehen
                     </button>
                     <button className="btn btn-primary mr-1">Delegieren</button>
-                    <button className="btn btn-primary mr-1">Zurück</button>
+                    <Link 
+                        to="/fahrten" 
+                        className="btn btn-primary mr-1"
+                    >
+                        Zurück
+                    </Link>
                 </TaskPanel>
 
                 <div className="card">
