@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
 
@@ -36,7 +37,7 @@ class RideList extends React.PureComponent {
 
         return (
             <div className="container">
-                <div className='pb-2 mt-4 mb-4 border-bottom'>
+                <div className="pb-2 mt-4 mb-4 border-bottom">
                     <h1>Fahrtenliste</h1>
                 </div>
 
@@ -95,9 +96,12 @@ class RideList extends React.PureComponent {
                     <td>{x.consumer.interval}</td>
                     <td>{x.notes ? x.notes : "./."}</td>
                     <td>
-                        <button className="btn btn-sm btn-outline-info">
+                        <Link
+                            to={`/fahrten/${x._id}`}
+                            className="btn btn-sm btn-outline-info"
+                        >
                             Details
-                                </button>
+                        </Link>
                     </td>
                 </tr>
             </React.Fragment>

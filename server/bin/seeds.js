@@ -22,7 +22,7 @@ const firstCustomers = [
         startDate: '2019-11-11 09:51:43.000',
         interval: 1,
         tavArea: 789,
-        notes: 'This is a test customer, seeded by the Seeds that Christian created.',
+        notes: 'This is a test customer, seeded by the Seeds that Christian seeded.',
     },
     {
         company: 'Die Öffentlich-Rechtlichen GmbH',
@@ -41,7 +41,7 @@ const firstCustomers = [
         interval: 1,
         startDate: '2019-11-20 09:51:43.000',
         tavArea: 789,
-        notes: 'This is a test customer, seeded by the Seeds that Christian created.',
+        notes: 'This is a test customer, seeded by the Seeds that Christian seeded.',
     },
     {
         company: 'Ducktales Gesellschaft für Quack mbH',
@@ -60,7 +60,7 @@ const firstCustomers = [
         interval: 1,
         startDate: '2019-10-20 09:51:43.000',
         tavArea: 789,
-        notes: 'This is a test customer, seeded by the Seeds that Christian created.',
+        notes: 'This is a test customer, seeded by the Seeds that Christian seeded.',
     },
 ];
 
