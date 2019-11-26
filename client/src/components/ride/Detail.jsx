@@ -9,6 +9,10 @@ class RideDetails extends React.Component {
         this.state = {
             isError: false
         }
+
+        this.fetchRide = this.fetchRide.bind(this);
+        this.updateRide = this.updateRide.bind(this);
+        this.finishRide = this.finishRide.bind(this);
     }
 
     async fetchRide() {
@@ -21,19 +25,51 @@ class RideDetails extends React.Component {
 
             const { consumer, state, date, quantity, notes } = result
 
-            this.setState({ 
+            this.setState({
                 consumer,
                 date,
                 state,
                 quantity,
                 notes
-             });
+            });
 
         } catch {
             this.setState({
                 isError: true
             });
         }
+    }
+
+    async updateRide() {
+        const id = this.props.match.params.id;
+        const ride = this.state;
+
+        try {
+            const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`;
+            await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ride)
+            });
+
+            this.props.history.push(`/fahrten`);
+
+        } catch {
+            this.setState({
+                isError: true
+            });
+        }
+    }
+
+    finishRide() {
+        this.setState({
+            state: 1
+        });
+
+        this.updateRide();
     }
 
     componentDidMount() {
@@ -43,7 +79,7 @@ class RideDetails extends React.Component {
     render() {
         const state = this.state;
         const consumer = state.consumer;
-        
+
         if (!consumer) {
             return "No Consumer"
         }
@@ -57,7 +93,12 @@ class RideDetails extends React.Component {
                 </div>
 
                 <TaskPanel>
-                    <button className="btn btn-primary mr-1">Erledigt</button>
+                    <button
+                        className="btn btn-primary mr-1"
+                        onClick={this.finishRide}
+                    >
+                        Erledigt
+                        </button>
                     <button className="btn btn-primary mr-1">Ablehen</button>
                     <button className="btn btn-primary mr-1">Delegieren</button>
                     <button className="btn btn-primary mr-1">Zurück</button>
