@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskPanel from '../shared/TaskPanel';
 
-class RideDetails extends React.PureComponent {
+class RideDetails extends React.Component {
     constructor(props) {
         super(props)
 
@@ -17,9 +17,17 @@ class RideDetails extends React.PureComponent {
         try {
             const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`
             const response = await fetch(url);
-            const ride = await response.json();
+            const result = await response.json();
 
-            this.setState({ride});
+            const { consumer, state, date, quantity, notes } = result
+
+            this.setState({ 
+                consumer,
+                date,
+                state,
+                quantity,
+                notes
+             });
 
         } catch {
             this.setState({
@@ -33,6 +41,15 @@ class RideDetails extends React.PureComponent {
     }
 
     render() {
+        const state = this.state;
+        const consumer = state.consumer;
+        
+        if (!consumer) {
+            return "No Consumer"
+        }
+
+        const date = new Date(state.date);
+
         return (
             <div className="container">
                 <div className="pc-2 mt-4 mb-4 border-bottom">
@@ -47,25 +64,27 @@ class RideDetails extends React.PureComponent {
                 </TaskPanel>
 
                 <div className="card">
-                    <h5 className="card-header">Fahrt Nr. Z-1234</h5>
+                    <h5 className="card-header">{date.toString()}</h5>
                     <div className="card-body">
 
                         <div className="form-row">
                             <div className="form-group col-md-2">
-                                <label htmlFor="disabledInput">Kundennummer</label>
+                                <label htmlFor="customerNumber">Kundennummer</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="customerNumber"
                                     type="text"
+                                    value={consumer.customerNumber}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-8">
-                                <label htmlFor="disabledInput">Firma</label>
+                                <label htmlFor="company">Firma</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="company"
                                     type="text"
+                                    value={consumer.company}
                                     disabled
                                 />
                             </div>
@@ -73,20 +92,22 @@ class RideDetails extends React.PureComponent {
 
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="disabledInput">Vorname</label>
+                                <label htmlFor="nameFirst">Vorname</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="nameFirst"
                                     type="text"
+                                    value={consumer.name.first}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-6">
-                                <label htmlFor="disabledInput">Nachname</label>
+                                <label htmlFor="nameLast">Nachname</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="nameLast"
                                     type="text"
+                                    value={consumer.name.last}
                                     disabled
                                 />
                             </div>
@@ -94,20 +115,22 @@ class RideDetails extends React.PureComponent {
 
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="disabledInput">Straße</label>
+                                <label htmlFor="street">Straße</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="street"
                                     type="text"
+                                    value={consumer.adress.street}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-2">
-                                <label htmlFor="disabledInput">Hausnummer</label>
+                                <label htmlFor="number">Hausnummer</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="number"
                                     type="text"
+                                    value={consumer.adress.number}
                                     disabled
                                 />
                             </div>
@@ -115,20 +138,22 @@ class RideDetails extends React.PureComponent {
 
                         <div className="form-row">
                             <div className="form-group col-md-2">
-                                <label htmlFor="disabledInput">Postleitzahl</label>
+                                <label htmlFor="zipcode">Postleitzahl</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="zipcode"
                                     type="text"
+                                    value={consumer.adress.zipcode}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-6">
-                                <label htmlFor="disabledInput">Stadt</label>
+                                <label htmlFor="city">Stadt</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="city"
                                     type="text"
+                                    value={consumer.adress.city}
                                     disabled
                                 />
                             </div>
@@ -136,29 +161,32 @@ class RideDetails extends React.PureComponent {
 
                         <div className="form-row">
                             <div className="form-group col-md-4">
-                                <label htmlFor="disabledInput">TAV</label>
+                                <label htmlFor="tavArea">TAV</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="tavArea"
                                     type="text"
+                                    value={consumer.tavArea}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-4">
-                                <label htmlFor="disabledInput">Menge</label>
+                                <label htmlFor="quantity">Menge in m³</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="quantity"
                                     type="text"
+                                    value={state.quantity}
                                     disabled
                                 />
                             </div>
                             <div className="form-group col-md-4">
-                                <label htmlFor="disabledInput">Interval</label>
+                                <label htmlFor="interval">Interval in Wochen</label>
                                 <input
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="interval"
                                     type="text"
+                                    value={consumer.interval}
                                     disabled
                                 />
                             </div>
@@ -166,12 +194,13 @@ class RideDetails extends React.PureComponent {
 
                         <div className="form-row">
                             <div className="form-group col-md-8">
-                                <label htmlFor="disabledInput">Bemerkungen</label>
+                                <label htmlFor="notes">Bemerkungen</label>
                                 <textarea
                                     className="form-control"
-                                    id="disabledInput"
+                                    id="notes"
                                     type="text"
                                     rows="4"
+                                    value={state.notes}
                                     disabled
                                 />
                             </div>
