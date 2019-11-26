@@ -11,8 +11,25 @@ class RideDetails extends React.PureComponent {
         }
     }
 
-    async getRide() {
+    async fetchRide() {
         const id = this.props.match.params.id;
+
+        try {
+            const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`
+            const response = await fetch(url);
+            const ride = await response.json();
+
+            this.setState({ride});
+
+        } catch {
+            this.setState({
+                isError: true
+            });
+        }
+    }
+
+    componentDidMount() {
+        this.fetchRide();
     }
 
     render() {
