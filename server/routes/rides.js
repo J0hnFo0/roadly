@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
     .populate('consumer')
     .then(rides => {
       res.json({
-        rides 
+        rides
       });
     })
     .catch(err => next(err));
@@ -30,4 +30,17 @@ router.get('/', (req, res, next) => {
 
 // GET Rides based on duration choosen by user
 
+// GET Ride by id
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  Ride.findById(id)
+    .populate('consumer')
+    .then(ride => {
+      res.json(ride);
+    })
+    .catch(err => next(err));
+
+})
 module.exports = router;
