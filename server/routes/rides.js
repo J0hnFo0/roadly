@@ -31,7 +31,6 @@ router.get('/', (req, res, next) => {
 // GET Rides based on duration choosen by user
 
 // GET Ride by id
-
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
 
@@ -42,5 +41,20 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(err => next(err));
 
-})
+});
+
+// PUT Ride
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  const ride = req.body;
+
+  Ride.findByIdAndUpdate(id, ride)
+    .then(() => {
+      res.json({
+        success: true
+      })
+        .catch(err => next(err));
+    });
+});
+
 module.exports = router;

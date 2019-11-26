@@ -85,7 +85,7 @@ router.put('/:id', (req, res, next) => {
   const customer = req.body;
 
   Customer.findByIdAndUpdate(id, customer)
-    .then(() => {
+    .then((customer) => {
       res.json({ customer });
     })
     .catch(err => next(err));
