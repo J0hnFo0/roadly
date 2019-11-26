@@ -13,6 +13,7 @@ class RideDetails extends React.Component {
         this.fetchRide = this.fetchRide.bind(this);
         this.updateRide = this.updateRide.bind(this);
         this.finishRide = this.finishRide.bind(this);
+        this.rejectRide = this.rejectRide.bind(this);
     }
 
     async fetchRide() {
@@ -43,7 +44,7 @@ class RideDetails extends React.Component {
     async updateRide() {
         const id = this.props.match.params.id;
         const ride = this.state;
-
+        console.log("state", ride.state)
         try {
             const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`;
             await fetch(url, {
@@ -67,9 +68,17 @@ class RideDetails extends React.Component {
     finishRide() {
         this.setState({
             state: 1
+        }, () => {
+            this.updateRide()
         });
+    }
 
-        this.updateRide();
+    rejectRide() {
+        this.setState({
+            state: 2
+        }, () => {
+            this.updateRide()
+        });
     }
 
     componentDidMount() {
@@ -99,7 +108,12 @@ class RideDetails extends React.Component {
                     >
                         Erledigt
                         </button>
-                    <button className="btn btn-primary mr-1">Ablehen</button>
+                    <button
+                        className="btn btn-primary mr-1"
+                        onClick={this.rejectRide}
+                    >
+                        Ablehen
+                    </button>
                     <button className="btn btn-primary mr-1">Delegieren</button>
                     <button className="btn btn-primary mr-1">Zurück</button>
                 </TaskPanel>
