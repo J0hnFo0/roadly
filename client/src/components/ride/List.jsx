@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
+import { states } from '../../utils/states';
 
 class RideList extends React.PureComponent {
     constructor(props) {
@@ -58,8 +59,8 @@ class RideList extends React.PureComponent {
                                 <th>Nr</th>
                                 <th>Kd-Nr.</th>
                                 <th>m³</th>
-                                <th>Intervall</th>
-                                <th>Bemerkung</th>
+                                <th>Interv.</th>
+                                <th>Status</th>
                                 <th>Auswahl</th>
                             </thead>
                             <tbody>
@@ -94,7 +95,7 @@ class RideList extends React.PureComponent {
                     <td>{x.consumer.adress.zipcode}</td>
                     <td>{x.quantity}</td>
                     <td>{x.consumer.interval}</td>
-                    <td>{x.notes ? x.notes : "./."}</td>
+                    <td>{states[x.state]}</td>
                     <td>
                         <Link
                             to={`/fahrten/${x._id}`}

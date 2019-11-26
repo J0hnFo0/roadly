@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
+import { states } from '../../utils/states';
 
 class RideDetails extends React.Component {
     constructor(props) {
@@ -221,7 +222,7 @@ class RideDetails extends React.Component {
                         </div>
 
                         <div className="form-row">
-                            <div className="form-group col-md-4">
+                            <div className="form-group col-md-3">
                                 <label htmlFor="tavArea">TAV</label>
                                 <input
                                     className="form-control"
@@ -231,7 +232,7 @@ class RideDetails extends React.Component {
                                     disabled
                                 />
                             </div>
-                            <div className="form-group col-md-4">
+                            <div className="form-group col-md-3">
                                 <label htmlFor="quantity">Menge in m³</label>
                                 <input
                                     className="form-control"
@@ -241,13 +242,23 @@ class RideDetails extends React.Component {
                                     disabled
                                 />
                             </div>
-                            <div className="form-group col-md-4">
+                            <div className="form-group col-md-3">
                                 <label htmlFor="interval">Interval in Wochen</label>
                                 <input
                                     className="form-control"
                                     id="interval"
                                     type="text"
                                     value={consumer.interval}
+                                    disabled
+                                />
+                            </div>
+                            <div className="form-group col-md-3">
+                                <label htmlFor="interval">Status</label>
+                                <input
+                                    className="form-control"
+                                    id="interval"
+                                    type="text"
+                                    value={states[state.state]}
                                     disabled
                                 />
                             </div>
