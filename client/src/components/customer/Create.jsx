@@ -90,6 +90,23 @@ class Create extends React.Component {
     }
   }
 
+  async fetchCars() {
+    try {
+      const url = `${process.env.REACT_APP_API_BASE_URL}/api/cars/`;
+      const response = await fetch(url);
+      const cars = response.json();
+
+      this.setState({
+        cars
+      });
+
+    } catch {
+      this.setState({
+        isError: true
+      });
+    }
+  }
+
   redirect() {
     const isSaved = this.state.isSaved;
 
@@ -98,6 +115,10 @@ class Create extends React.Component {
         <Redirect to='/' />
       );
     }
+  }
+
+  componentDidMount() {
+    this.fetchCars();
   }
 
   render() {
@@ -131,7 +152,7 @@ class Create extends React.Component {
           tavArea={state.tavArea}
           pitSize={state.pitSize}
           interval={state.interval}
-          car={state.car}
+          cars={state.cars}
           notes={state.notes}
 
           handleChange={this.handleChange}

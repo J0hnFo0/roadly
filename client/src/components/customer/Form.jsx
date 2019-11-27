@@ -186,20 +186,7 @@ class CustomerForm extends React.PureComponent {
                   required={true}
                 />
               </div>
-              <div className='form-group col-md-6'>
-                <label htmlFor='car'>Fahrzeug</label>
-                <select
-                  id="car"
-                  className="form-control"
-                  onChange={props.handleChange}
-                  value={props.car}
-                >
-                  <option value="grapefruit">Grapefruit</option>
-                  <option value="lime">Lime</option>
-                  <option selected value="coconut">Coconut</option>
-                  <option value="mango">Mango</option>
-                </select>
-              </div>
+              {this.renderCars()}
             </div>
           </div>
 
@@ -252,6 +239,32 @@ class CustomerForm extends React.PureComponent {
         Löschen
       </button>
     )
+  }
+  // Uncomment when we have cars
+  renderCars() {
+    if (!this.props.cars) {
+      return;
+    }
+
+    //const cars = this.props.cars;
+    const cars = []
+    const options = cars.map((x,i) => 
+    <option value={i}>{cars.name}</option> 
+    )
+
+    return (
+      <div className='form-group col-md-6'>
+        <label htmlFor='car'>Fahrzeug</label>
+        <select
+          id="car"
+          className="form-control"
+          onChange={this.props.handleChange}
+          value={this.props.car}
+        >
+          {options}
+        </select>
+      </div>
+    );
   }
 }
 
