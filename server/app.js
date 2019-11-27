@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const customersRouter = require('./routes/customers');
 const ridesRouter = require('./routes/rides');
+const carsRouter = require('./routes/cars');
 
 // DB connection
 require('./configs/database');
@@ -30,6 +31,7 @@ app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/customers', customersRouter);
 app.use('/api/rides', ridesRouter);
+app.use('/api/cars', carsRouter);
 
 // Catch 404 error for any route that start with "/api"
 app.use('/api/*', (req, res, next) => {
