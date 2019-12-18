@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
+import Item from './Item';
 import { states } from '../../utils/states';
 
 class RideList extends React.PureComponent {
@@ -43,8 +44,8 @@ class RideList extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                    <Link 
-                        to="/fahrten/erstellen" 
+                    <Link
+                        to="/fahrten/erstellen"
                         className="btn btn-primary mr-1"
                     >
                         Fahrt hinzufügen
@@ -55,26 +56,49 @@ class RideList extends React.PureComponent {
                 <div className="card">
                     <h5 className="card-header">{today.toDateString()}</h5>
                     <div className="card-body p-0">
-                        <div className="table-responsive">
-                        <table className="table mb-0">
-                            <thead>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Ort</th>
-                                <th>Adresse</th>
-                                <th>m³</th>
-                                <th>Interv.</th>
-                                <th>Status</th>
-                                <th>Auswahl</th>
-                            </thead>
-                            <tbody>
-                                {this.renderTableBody()}
-                            </tbody>
-                        </table>
-                        </div>
+                        {/*                         <div className="table-responsive">
+                            <table className="table mb-0">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Ort</th>
+                                    <th>Adresse</th>
+                                    <th>m³</th>
+                                    <th>Interv.</th>
+                                    <th>Status</th>
+                                    <th>Auswahl</th>
+                                </thead>
+                                <tbody>
+                                    {this.renderTableBody()}
+                                </tbody>
+                            </table>
+                        </div> */}
+                        {this.renderList()}
                     </div>
                 </div>
             </div>
+        );
+    }
+
+    renderList() {
+        if (!this.state.rides) {
+            return;
+        }
+
+        const rides = this.state.rides.map((x, i) =>
+            <Item 
+                index={i}
+                id={x._id}
+                consumer={x.consumer}
+            />
+        )
+
+        return (
+            <React.Fragment>
+                <div id="accordion">
+                    {rides}
+                </div>
+            </React.Fragment>
         );
     }
 
