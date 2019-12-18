@@ -46,7 +46,7 @@ class RideDetails extends React.Component {
     async updateRide() {
         const id = this.props.match.params.id;
         const ride = this.state;
-        console.log("state", ride.state)
+
         try {
             const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`;
             await fetch(url, {
@@ -106,7 +106,10 @@ class RideDetails extends React.Component {
                 <TaskPanel>
                     <button
                         className="btn btn-primary mr-1"
-                        onClick={this.finishRide}
+                        data-toggle="collapse"
+                        data-target="#pickup-form"
+                        aria-expanded="false"
+                    /*    onClick={this.finishRide} */
                     >
                         Erledigt
                         </button>
@@ -124,6 +127,28 @@ class RideDetails extends React.Component {
                         Zurück
                     </Link>
                 </TaskPanel>
+
+                <div className="collapse" id="pickup-form">
+                    <div className="card card-body">
+                        <form>
+                            <div className="form-group col-md-2">
+                                <label htmlFor="amountPickedUp">Menge</label>
+                                <input
+                                    className="form-control"
+                                    id="amountPickedUp"
+                                    type="number"
+
+                                />
+                            </div>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => this.finishRide()}
+                            >
+                                Bestätigen
+                                </button>
+                        </form>
+                    </div>
+                </div>
 
                 <div className="card">
                     <h5 className="card-header">{date.toString()}</h5>
