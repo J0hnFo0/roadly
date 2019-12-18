@@ -14,7 +14,7 @@ class RideReport extends React.PureComponent {
         }
     }
 
-    async fetchRides() {
+    async refresh() {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides/all`);
             const result = await response.json();
@@ -22,7 +22,7 @@ class RideReport extends React.PureComponent {
             this.setState({
                 rides: result.rides
             });
-            
+
         } catch {
             this.setState({
                 isError: true
@@ -31,7 +31,7 @@ class RideReport extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.fetchRides();
+        this.refresh();
     }
 
     render() {
@@ -40,8 +40,14 @@ class RideReport extends React.PureComponent {
                 <div className="pb-2 mt-4 mb-4 border-bottom">
                     <h1>Report</h1>
                 </div>
-                <TaskPanel>
 
+                <TaskPanel>
+                    <Link
+                        to="/fahrten"
+                        className="btn btn-primary mr-1"
+                    >
+                        Zurück
+                    </Link>
                 </TaskPanel>
 
                 {this.renderTable()}
