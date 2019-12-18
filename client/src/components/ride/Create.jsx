@@ -8,7 +8,7 @@ class CreateRide extends React.PureComponent {
         this.state = {
             customer: "",
             customers: [],
-            date: new Date(),
+            pickUpDate: new Date(),
             isError: false
         }
 
@@ -25,9 +25,9 @@ class CreateRide extends React.PureComponent {
         })
     }
 
-    handleDateChange = date => {
+    handleDateChange = pickUpDate => {
         this.setState({
-            date
+            pickUpDate
         });
     }
 
@@ -56,10 +56,10 @@ class CreateRide extends React.PureComponent {
         }
 
         const customer = this.state.customer;
-        const date = this.state.date;
+        const pickUpDate = this.state.pickUpDate;
         const ride = {
             customer,
-            date
+            pickUpDate
         }
 
         try {
@@ -88,7 +88,13 @@ class CreateRide extends React.PureComponent {
         const state = this.state;
         const customers = state.customers;
         const options = customers.map((x, i) =>
-            <option key={i} value={i}>{x.name.last}</option>
+            <option key={i} value={i}>
+                {
+                    x.company
+                        ? x.company
+                        : x.name.first + " " + x.name.last
+                }
+            </option>
         )
 
         return (
@@ -98,7 +104,7 @@ class CreateRide extends React.PureComponent {
                 </div>
 
                 <form className="form" onSubmit={this.handleSubmit}>
-                    <div className="form-group col-md-6">
+                    <div className="form-group">
                         <label htmlFor="customer">Kunde</label>
                         <select
                             id="customer"
@@ -110,9 +116,9 @@ class CreateRide extends React.PureComponent {
                         </select>
 
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group">
                         <DatePicker
-                            date={state.date}
+                            date={state.pickUpDate}
                             onChange={this.handleDateChange}
                         />
                     </div>

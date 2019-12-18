@@ -3,20 +3,19 @@ const router = express.Router();
 
 const Ride = require('../models/Ride');
 
-/* Set Date to '2019-12-02' to simulate pickup.
-   Remove fixed to use application with current date. 
-*/
-function createUTC() {
-  let date = new Date('2019-12-02')
-
+// Helper function to create UTC date without time
+function createUTC(date) {
   return new Date(
     Date.UTC(date.getUTCFullYear(), date.getMonth(), date.getDate())
   )
 }
 
-// GET Rides for current day
+/* GET rides for current day. 
+   Set Date to '2019-12-02' to simulate pickup.
+   Remove fixed to use application with current date. 
+*/
 router.get('/', (req, res, next) => {
-  const today = createUTC();
+  const today = createUTC(new Date());
   Ride.find({ date: today })
     .populate('consumer')
     .then(rides => {
@@ -42,10 +41,12 @@ router.get('/:id', (req, res, next) => {
 
 // POST Ride 
 router.post('/', (req, res, next) => {
-  const {customer, date} = req.body;
+  const { customer, pickUpDate } = req.body;
+
+  const pdateObject = new Date(pickUpDate)
 
   const ride = {
-    date,
+    date: createUTC(pdateObject),
     consumer: customer._id,
     quantity: customer.pitSize,
     state: 0,
