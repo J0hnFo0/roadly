@@ -44,9 +44,13 @@ router.get('/:id', (req, res, next) => {
 
 // POST Ride 
 router.post('/', (req, res, next) => {
-  const body = req.body;
+  const customer = req.body;
 
-  const ride = {};
+  const ride = {
+    consumer: customer._id,
+    quantity: cutstomer.pitSize,
+    state: 0,
+  };
 
   Ride.create(ride)
     .then(() => {
