@@ -42,6 +42,19 @@ router.get('/:id', (req, res, next) => {
 
 });
 
+// POST Ride 
+router.post('/', (req, res, next) => {
+  const body = req.body;
+
+  const ride = {};
+
+  Ride.create(ride)
+    .then(() => {
+      res.status(200);
+    })
+    .catch((err) => next(err))
+});
+
 // PUT Ride
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -49,9 +62,7 @@ router.put('/:id', (req, res, next) => {
 
   Ride.findByIdAndUpdate(id, ride)
     .then(() => {
-      res.json({
-        success: true
-      })
+      res.status(200);
     })
     .catch(err => next(err));
 });

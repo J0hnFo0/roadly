@@ -59,10 +59,14 @@ router.post('/', (req, res, next) => {
         state: 0
       }
 
-      cD = customer.startDate;
+      cStartDate = customer.startDate;
 
-      let pickUpDate = new Date(  
-        Date.UTC(cD.getUTCFullYear(), cD.getMonth(), cD.getDate())
+      let pickUpDate = new Date(
+        Date.UTC(
+          cStartDate.getUTCFullYear(),
+          cStartDate.getMonth(),
+          cStartDate.getDate()
+        )
       );
 
       for (let i = 0; i < pickUpsPerYear; i++) {
