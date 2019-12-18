@@ -117,8 +117,8 @@ class RideDetails extends React.Component {
                         Ablehen
                     </button>
                     <button className="btn btn-primary mr-1">Delegieren</button>
-                    <Link 
-                        to="/fahrten" 
+                    <Link
+                        to="/fahrten"
                         className="btn btn-primary mr-1"
                     >
                         Zurück
@@ -140,36 +140,28 @@ class RideDetails extends React.Component {
                                     disabled
                                 />
                             </div>
-                            <div className="form-group col-md-8">
-                                <label htmlFor="company">Firma</label>
-                                <input
-                                    className="form-control"
-                                    id="company"
-                                    type="text"
-                                    value={consumer.company}
-                                    disabled
-                                />
-                            </div>
+                            {consumer.company &&
+                                <div className="form-group col-md-8">
+                                    <label htmlFor="company">Firma</label>
+                                    <input
+                                        className="form-control"
+                                        id="company"
+                                        type="text"
+                                        value={consumer.company}
+                                        disabled
+                                    />
+                                </div>
+                            }
                         </div>
 
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="nameFirst">Vorname</label>
+                                <label htmlFor="nameFirst">Name</label>
                                 <input
                                     className="form-control"
                                     id="nameFirst"
                                     type="text"
-                                    value={consumer.name.first}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="nameLast">Nachname</label>
-                                <input
-                                    className="form-control"
-                                    id="nameLast"
-                                    type="text"
-                                    value={consumer.name.last}
+                                    value={consumer.name.first + " " + consumer.name.last}
                                     disabled
                                 />
                             </div>
@@ -182,17 +174,7 @@ class RideDetails extends React.Component {
                                     className="form-control"
                                     id="street"
                                     type="text"
-                                    value={consumer.adress.street}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group col-md-2">
-                                <label htmlFor="number">Hausnummer</label>
-                                <input
-                                    className="form-control"
-                                    id="number"
-                                    type="text"
-                                    value={consumer.adress.number}
+                                    value={consumer.adress.street + " " + consumer.adress.number}
                                     disabled
                                 />
                             </div>
@@ -200,22 +182,12 @@ class RideDetails extends React.Component {
 
                         <div className="form-row">
                             <div className="form-group col-md-2">
-                                <label htmlFor="zipcode">Postleitzahl</label>
+                                <label htmlFor="zipcode">Ort</label>
                                 <input
                                     className="form-control"
                                     id="zipcode"
                                     type="text"
-                                    value={consumer.adress.zipcode}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="city">Stadt</label>
-                                <input
-                                    className="form-control"
-                                    id="city"
-                                    type="text"
-                                    value={consumer.adress.city}
+                                    value={consumer.adress.zipcode + " " + consumer.adress.city}
                                     disabled
                                 />
                             </div>
