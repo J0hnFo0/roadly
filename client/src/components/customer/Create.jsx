@@ -30,7 +30,7 @@ class Create extends React.Component {
   handleChange(e) {
     e.preventDefault();
 
-    let value = {}
+    let value = {};
     value[e.target.id] = e.target.value;
 
     this.setState(value);

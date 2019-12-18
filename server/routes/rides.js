@@ -27,8 +27,6 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// TODO GET Rides based on duration choosen by user
-
 // GET Ride by id
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -44,17 +42,18 @@ router.get('/:id', (req, res, next) => {
 
 // POST Ride 
 router.post('/', (req, res, next) => {
-  const customer = req.body;
+  const {customer, date} = req.body;
 
   const ride = {
+    date,
     consumer: customer._id,
-    quantity: cutstomer.pitSize,
+    quantity: customer.pitSize,
     state: 0,
   };
 
   Ride.create(ride)
-    .then(() => {
-      res.status(200);
+    .then((ride) => {
+      res.json(ride);
     })
     .catch((err) => next(err))
 });
@@ -66,7 +65,9 @@ router.put('/:id', (req, res, next) => {
 
   Ride.findByIdAndUpdate(id, ride)
     .then(() => {
-      res.status(200);
+      res.json({
+        success: true
+      });
     })
     .catch(err => next(err));
 });
