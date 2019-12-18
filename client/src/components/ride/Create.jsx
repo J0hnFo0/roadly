@@ -77,6 +77,8 @@ class CreateRide extends React.PureComponent {
                 body: JSON.stringify(ride)
             });
 
+            this.props.onCreated();
+            
         } catch {
             this.setState({
                 isError: true

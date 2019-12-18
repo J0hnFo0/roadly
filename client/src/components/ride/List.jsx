@@ -36,14 +36,11 @@ class RideList extends React.PureComponent {
     }
 
     render() {
-        const today = new Date()
-
         return (
             <div className="container">
                 <div className="pb-2 mt-4 mb-4 border-bottom">
                     <h1>Fahrtenliste</h1>
                 </div>
-
                 <TaskPanel>
                     <button
                         className="btn btn-primary mr-1"
@@ -55,43 +52,23 @@ class RideList extends React.PureComponent {
                     </button>
                     <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
                 </TaskPanel>
-
-                <div className="collapse" id="create-ride">
-                    <div className="card mb-3">
-                        <div className='card-header'>Neue Fahrt hinzufügen</div>
-                        <div className="card-body">
-                            <Create />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="pb-2 mt-4 mb-4 border-bottom">
-                    <h2>{today.toDateString()}</h2>
-                </div>
+                {this.renderCreate()}
                 {this.renderList()}
+            </div>
+        );
+    }
 
-                {/*                 <div className="card">
-                    <h5 className="card-header"></h5>
-                    <div className="card-body p-0">
-                        <div className="table-responsive">
-                            <table className="table mb-0">
-                                <thead>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Ort</th>
-                                    <th>Adresse</th>
-                                    <th>m³</th>
-                                    <th>Interv.</th>
-                                    <th>Status</th>
-                                    <th>Auswahl</th>
-                                </thead>
-                                <tbody>
-                                    {this.renderTableBody()}
-                                </tbody>
-                            </table>
-                        </div>
+    renderCreate() {
+        return (
+            <div className="collapse" id="create-ride">
+                <div className="card mb-3">
+                    <div className='card-header'>Neue Fahrt hinzufügen</div>
+                    <div className="card-body">
+                        <Create
+                            onCreated={this.refresh()}
+                        />
                     </div>
-                </div> */}
+                </div>
             </div>
         );
     }
@@ -109,13 +86,44 @@ class RideList extends React.PureComponent {
             />
         )
 
+        const today = new Date();
         return (
             <React.Fragment>
+                <div className="pb-2 mt-4 mb-4 border-bottom">
+                    <h2>{today.toDateString()}</h2>
+                </div>
                 <div id="accordion" className="mb-5">
                     {rides}
                     <hr />
                 </div>
             </React.Fragment>
+        );
+    }
+
+    renderTable() {
+        return (
+            <div className="card">
+                <h5 className="card-header"></h5>
+                <div className="card-body p-0">
+                    <div className="table-responsive">
+                        <table className="table mb-0">
+                            <thead>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Ort</th>
+                                <th>Adresse</th>
+                                <th>m³</th>
+                                <th>Interv.</th>
+                                <th>Status</th>
+                                <th>Auswahl</th>
+                            </thead>
+                            <tbody>
+                                {this.renderTableBody()}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         );
     }
 
