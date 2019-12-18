@@ -7,6 +7,7 @@ class CreateRide extends React.PureComponent {
 
         this.state = {
             customer: "",
+            customerIndex: 0,
             customers: [],
             pickUpDate: new Date(),
             isError: false
@@ -21,7 +22,8 @@ class CreateRide extends React.PureComponent {
         e.preventDefault();
 
         this.setState({
-            customer: this.state.customers[e.target.value]
+            customer: this.state.customers[e.target.value],
+            customerIndex: e.target.value
         })
     }
 
@@ -110,7 +112,7 @@ class CreateRide extends React.PureComponent {
                             id="customer"
                             className="form-control"
                             onChange={this.handleCustomerChange}
-                            value={state.customer}
+                            value={state.customerIndex}
                         >
                             {options}
                         </select>
