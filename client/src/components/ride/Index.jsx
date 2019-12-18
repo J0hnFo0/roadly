@@ -10,7 +10,7 @@ class RideIndex extends React.Component {
     render() {
         return (
             <Switch>
-                <Route exact path='/fahrten/report' component={Report} />
+                <Route exact path='/fahrten/auswertung' component={Report} />
                 <Route exact path='/fahrten/:id' component={Details} />
                 <Route component={List} />
             </Switch>
