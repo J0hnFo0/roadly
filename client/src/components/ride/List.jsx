@@ -43,7 +43,12 @@ class RideList extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                    <button className="btn btn-primary mr-1">Fahrt hinzufügen</button>
+                    <Link 
+                        to="/fahrten/erstellen" 
+                        className="btn btn-primary mr-1"
+                    >
+                        Fahrt hinzufügen
+                    </Link>
                     <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
                 </TaskPanel>
 
