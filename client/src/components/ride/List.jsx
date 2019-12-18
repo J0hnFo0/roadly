@@ -53,10 +53,15 @@ class RideList extends React.PureComponent {
                     <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
                 </TaskPanel>
 
-                <div className="card">
-                    <h5 className="card-header">{today.toDateString()}</h5>
+                <div className="pb-2 mt-4 mb-4 border-bottom">
+                    <h2>{today.toDateString()}</h2>
+                </div>
+                {this.renderList()}
+
+                {/*                 <div className="card">
+                    <h5 className="card-header"></h5>
                     <div className="card-body p-0">
-                        {/*                         <div className="table-responsive">
+                        <div className="table-responsive">
                             <table className="table mb-0">
                                 <thead>
                                     <th>#</th>
@@ -72,10 +77,9 @@ class RideList extends React.PureComponent {
                                     {this.renderTableBody()}
                                 </tbody>
                             </table>
-                        </div> */}
-                        {this.renderList()}
+                        </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
@@ -86,7 +90,7 @@ class RideList extends React.PureComponent {
         }
 
         const rides = this.state.rides.map((x, i) =>
-            <Item 
+            <Item
                 index={i}
                 id={x._id}
                 consumer={x.consumer}
@@ -95,8 +99,9 @@ class RideList extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <div id="accordion">
+                <div id="accordion" className="mb-5">
                     {rides}
+                    <hr />
                 </div>
             </React.Fragment>
         );
