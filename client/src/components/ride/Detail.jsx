@@ -9,13 +9,24 @@ class RideDetails extends React.Component {
         super(props)
 
         this.state = {
+            quantity: 0,
             isError: false
         }
 
+        this.handleChange = this.handleChange.bind(this);
         this.fetchRide = this.fetchRide.bind(this);
         this.updateRide = this.updateRide.bind(this);
         this.finishRide = this.finishRide.bind(this);
         this.rejectRide = this.rejectRide.bind(this);
+    }
+
+    handleChange(e) {
+        e.preventDefault();
+
+        let value = {};
+        value[e.target.id] = e.target.value;
+
+        this.setState(value);
     }
 
     async fetchRide() {
@@ -32,7 +43,6 @@ class RideDetails extends React.Component {
                 consumer,
                 date,
                 state,
-                quantity,
                 notes
             });
 
@@ -109,10 +119,9 @@ class RideDetails extends React.Component {
                         data-toggle="collapse"
                         data-target="#pickup-form"
                         aria-expanded="false"
-                    /*    onClick={this.finishRide} */
                     >
                         Erledigt
-                        </button>
+                    </button>
                     <button
                         className="btn btn-primary mr-1"
                         onClick={this.rejectRide}
@@ -129,24 +138,30 @@ class RideDetails extends React.Component {
                 </TaskPanel>
 
                 <div className="collapse" id="pickup-form">
-                    <div className="card card-body">
-                        <form>
-                            <div className="form-group col-md-2">
-                                <label htmlFor="amountPickedUp">Menge</label>
-                                <input
-                                    className="form-control"
-                                    id="amountPickedUp"
-                                    type="number"
-
-                                />
-                            </div>
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => this.finishRide()}
-                            >
-                                Bestätigen
+                    <div className="card mb-3">
+                        <div className='card-header'>Abholung bestätigen</div>
+                        <div className="card-body">
+                            <form>
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="quantity">Menge</label>
+                                    <input
+                                        className="form-control"
+                                        id="quantity"
+                                        type="number"
+                                        min={0}
+                                        max={consumer.pitSize}
+                                        value={state.quantity}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => this.finishRide()}
+                                >
+                                    Bestätigen
                                 </button>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -230,12 +245,12 @@ class RideDetails extends React.Component {
                                 />
                             </div>
                             <div className="form-group col-md-3">
-                                <label htmlFor="quantity">Menge in m³</label>
+                                <label htmlFor="pitSize">Grubengröße in m³</label>
                                 <input
                                     className="form-control"
-                                    id="quantity"
+                                    id="pitSize"
                                     type="text"
-                                    value={state.quantity}
+                                    value={consumer.pitSize}
                                     disabled
                                 />
                             </div>

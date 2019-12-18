@@ -48,7 +48,7 @@ router.post('/', (req, res, next) => {
   const ride = {
     date: createUTC(pdateObject),
     consumer: customer._id,
-    quantity: customer.pitSize,
+    quantity: 0,
     state: 0,
   };
 

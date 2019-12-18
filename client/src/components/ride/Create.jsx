@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import DatePicker from '../shared/DatePicker';
 
 class CreateRide extends React.PureComponent {
@@ -127,10 +129,16 @@ class CreateRide extends React.PureComponent {
 
                     <button
                         type="submit"
-                        className="btn btn-primary"
+                        className="btn btn-primary mr-1"
                     >
                         Fahrt erstellen
                     </button>
+                    <Link
+                        to="/fahrten"
+                        className="btn btn-primary mr-1"
+                    >
+                        Zurück
+                    </Link>
                 </form>
 
             </div>

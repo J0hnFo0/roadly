@@ -55,7 +55,7 @@ router.post('/', (req, res, next) => {
 
       let ride = {
         consumer: customer._id,
-        quantity: customer.pitSize,
+        quantity: 0,
         state: 0
       }
 
