@@ -11,13 +11,14 @@ function createUTC(date) {
 }
 
 /* GET rides for current day. 
-   Set Date to '2019-12-02' to simulate pickup.
-   Remove fixed to use application with current date. 
+   Set date to '2019-12-02' to simulate pickup.
+   Remove fixed date to use application with current date. 
+   Comment state in db query to show/hide all rides.
 */
 router.get('/', (req, res, next) => {
   const today = createUTC(new Date());
 
-  Ride.find({ date: { $lte: today } })
+  Ride.find({ date: { $lte: today }/* , state: 0 */ })
     .populate('consumer')
     .then(rides => {
       res.json({
