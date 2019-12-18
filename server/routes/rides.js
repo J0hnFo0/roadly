@@ -28,6 +28,18 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET all rides
+router.get('/all', (req, res, next) => {
+  Ride.find()
+  .populate('consumer')
+  .then(rides => {
+    res.json({
+      rides
+    });
+  })
+  .catch((err) => next(err))
+});
+
 // GET Ride by id
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;

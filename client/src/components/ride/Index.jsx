@@ -3,12 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 
 import List from './List';
 import Details from './Detail';
+import Report from './Report';
 
 class RideIndex extends React.Component {
 
     render() {
         return (
             <Switch>
+                <Route exact path='/fahrten/report' component={Report} />
                 <Route exact path='/fahrten/:id' component={Details} />
                 <Route component={List} />
             </Switch>
@@ -18,6 +20,12 @@ class RideIndex extends React.Component {
     renderList() {
         return (
             <List />
+        );
+    }
+
+    renderReporting() {
+        return (
+            <Report />
         );
     }
 }
