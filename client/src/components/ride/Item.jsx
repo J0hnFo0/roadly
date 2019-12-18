@@ -13,7 +13,7 @@ const Item = (props) => {
                         aria-expanded="true"
                         aria-controls={"collapse" + props.index}
                     >
-                        #{props.index} {
+                        #{props.index + 1} {
                             props.consumer.company
                                 ? props.consumer.company
                                 : `${props.consumer.name.first} ${props.consumer.name.last}`

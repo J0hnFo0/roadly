@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
 import Item from './Item';
+import Create from './Create';
 import { states } from '../../utils/states';
 
 class RideList extends React.PureComponent {
@@ -44,14 +45,25 @@ class RideList extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                    <Link
-                        to="/fahrten/erstellen"
+                    <button
                         className="btn btn-primary mr-1"
+                        data-toggle="collapse"
+                        data-target="#create-ride"
+                        aria-expanded="false"
                     >
                         Fahrt hinzufügen
-                    </Link>
+                    </button>
                     <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
                 </TaskPanel>
+
+                <div className="collapse" id="create-ride">
+                    <div className="card mb-3">
+                        <div className='card-header'>Neue Fahrt hinzufügen</div>
+                        <div className="card-body">
+                            <Create />
+                        </div>
+                    </div>
+                </div>
 
                 <div className="pb-2 mt-4 mb-4 border-bottom">
                     <h2>{today.toDateString()}</h2>

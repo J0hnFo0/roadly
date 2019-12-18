@@ -103,10 +103,6 @@ class CreateRide extends React.PureComponent {
 
         return (
             <div className="container">
-                <div className='pb-2 mt-4 mb-4 border-bottom'>
-                    <h1>Fahrt anlegen</h1>
-                </div>
-
                 <form className="form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="customer">Kunde</label>
@@ -133,12 +129,13 @@ class CreateRide extends React.PureComponent {
                     >
                         Fahrt erstellen
                     </button>
-                    <Link
-                        to="/fahrten"
+                    <button
                         className="btn btn-primary mr-1"
+                        data-toggle="collapse"
+                        data-target="#create-ride"
                     >
-                        Zurück
-                    </Link>
+                        Schließen
+                    </button>
                 </form>
 
             </div>
