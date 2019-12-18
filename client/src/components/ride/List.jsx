@@ -50,14 +50,13 @@ class RideList extends React.PureComponent {
                 <div className="card">
                     <h5 className="card-header">{today.toDateString()}</h5>
                     <div className="card-body p-0">
+                        <div className="table-responsive">
                         <table className="table mb-0">
                             <thead>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Ort</th>
-                                <th>Straße</th>
-                                <th>Nr</th>
-                                <th>Kd-Nr.</th>
+                                <th>Adresse</th>
                                 <th>m³</th>
                                 <th>Interv.</th>
                                 <th>Status</th>
@@ -67,6 +66,7 @@ class RideList extends React.PureComponent {
                                 {this.renderTableBody()}
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,10 +89,8 @@ class RideList extends React.PureComponent {
                                 : `${x.consumer.name.first} ${x.consumer.name.last}`
                         }
                     </td>
-                    <td>{x.consumer.adress.city}</td>
-                    <td>{x.consumer.adress.street}</td>
-                    <td>{x.consumer.adress.number}</td>
-                    <td>{x.consumer.adress.zipcode}</td>
+                    <td>{x.consumer.adress.zipcode} {x.consumer.adress.city}</td>
+                    <td>{x.consumer.adress.street} {x.consumer.adress.number}</td>
                     <td>{x.quantity}</td>
                     <td>{x.consumer.interval}</td>
                     <td>{states[x.state]}</td>
