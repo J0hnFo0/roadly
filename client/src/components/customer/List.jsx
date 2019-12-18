@@ -46,7 +46,7 @@ class CustomerList extends React.Component {
 
     this.setState({
       query: e.target.value,
-    });
+    }, () => this.refresh());
   }
 
   async componentDidMount() {
@@ -59,7 +59,7 @@ class CustomerList extends React.Component {
     return (
       <div className='container'>
         <div className='pb-2 mt-4 mb-4 border-bottom'>
-          <h1>GülleExpress - Next Level Fahrtenmanagement</h1>
+          <h1>Roadly - Next Level Fahrtenmanagement</h1>
         </div>
 
         <TaskPanel>
