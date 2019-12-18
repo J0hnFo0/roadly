@@ -14,6 +14,26 @@ class RideReport extends React.PureComponent {
         }
     }
 
+    async fetchRides() {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides/all`);
+            const result = await response.json();
+
+            this.setState({
+                rides: result.rides
+            });
+            
+        } catch {
+            this.setState({
+                isError: true
+            });
+        }
+    }
+
+    componentDidMount() {
+        this.fetchRides();
+    }
+
     render() {
         return (
             <div className="container">
