@@ -28,7 +28,6 @@ const Item = (props) => {
                 aria-labelledby={"header-" + props.index}
                 data-parent="#accordion"
             >
-                <div class="card-body">
                     <table className="table">
                         <tbody>
                         <tr>
@@ -56,7 +55,6 @@ const Item = (props) => {
                         </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
     );
