@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TaskPanel from '../shared/TaskPanel';
 import Item from './Item';
 import Create from './Create';
+import FetchError from '../shared/FetchError';
 
 class RideList extends React.PureComponent {
     constructor(props) {
@@ -56,9 +57,20 @@ class RideList extends React.PureComponent {
                         Fahrten anzeigen
                     </Link>
                 </TaskPanel>
+                {this.renderFetchError()}
                 {this.renderCreate()}
                 {this.renderList()}
             </div>
+        );
+    }
+
+    renderFetchError() {
+        if (!this.state.isError) {
+            return;
+        }
+
+        return (
+            <FetchError />
         );
     }
 

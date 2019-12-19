@@ -75,13 +75,19 @@ class CustomerList extends React.Component {
           onSearch={this.refresh}
           query={state.query}
         />
-        {state.isError ? <FetchError /> : this.renderList()}
+        {this.renderList()}
       </div>
     );
   }
 
   renderList() {
     const list = this.state.list;
+
+    if (this.state.isError) {
+      return (
+        <FetchError />
+      )
+    }
 
     if (!list[0]) {
       return (
