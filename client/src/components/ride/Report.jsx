@@ -37,8 +37,9 @@ class RideReport extends React.PureComponent {
         const from = this.state.from;
         const to = this.state.to;
 
-        const fromUrl = from.getFullYear() + "-" + (from.getMonth() + 1) + "-" + + from.getDate()
-        const toUrl = to.getUTCFullYear() + "-" + (to.getMonth() + 1) + "-" + to.getDate()
+        const fromUrl = `${from.getFullYear()}-${(from.getMonth() + 1)}-${from.getDate()}`
+        const toUrl = `${to.getUTCFullYear()}-${(to.getMonth() + 1)}-${to.getDate()}`
+        
         const query = `from=${fromUrl}&to=${toUrl}`;
 
         try {
@@ -69,23 +70,21 @@ class RideReport extends React.PureComponent {
 
                 <TaskPanel>
                     <div className="form-row">
-                        <DatePicker
-                            date={this.state.from}
-                            onChange={this.handleFrom}
-                        />
-                        <DatePicker
-                            date={this.state.to}
-                            onChange={this.handleTo}
-                        />
-                        <button
-                            className="btn btn-primary mr-1"
-                            onClick={this.refresh}
-                        >
-                            Filtern
-                            </button>
+                        <span className="mr-1">
+                            <DatePicker
+                                date={this.state.from}
+                                onChange={this.handleFrom}
+                            />
+                        </span>
+                        <span className="mr-1">
+                            <DatePicker
+                                date={this.state.to}
+                                onChange={this.handleTo}
+                            />
+                        </span>
                         <Link
                             to="/fahrten"
-                            className="btn btn-primary mr-1"
+                            className="btn btn-primary"
                         >
                             Zurück
                     </Link>
