@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import DatePicker from '../shared/DatePicker';
 import TaskPanel from '../shared/TaskPanel';
+import FetchError from '../shared/FetchError';
 import { states } from '../../utils/states';
 
 class RideReport extends React.PureComponent {
@@ -90,10 +91,17 @@ class RideReport extends React.PureComponent {
                     </Link>
                     </div>
                 </TaskPanel>
-
-                {this.renderTable()}
+                {this.state.isError ? this.renderFetchError() : this.renderTable()}
             </div>
         );
+    }
+
+    renderFetchError() {
+        if (!this.state.isError) {
+            return;
+        }
+
+        return <FetchError />
     }
 
     renderTable() {
