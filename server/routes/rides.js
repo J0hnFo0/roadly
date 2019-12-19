@@ -18,7 +18,10 @@ function createUTC(date) {
 router.get('/', (req, res, next) => {
   const today = createUTC(new Date());
 
-  Ride.find({ date: { $lte: today }, state: 0 })
+  Ride.find({
+    date: { $lte: today },
+    state: 0
+  })
     .populate('consumer')
     .then(rides => {
       res.json({
@@ -28,16 +31,22 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET all rides
+// GET all rides based on filter set by user
 router.get('/all', (req, res, next) => {
-  Ride.find()
-  .populate('consumer')
-  .then(rides => {
-    res.json({
-      rides
-    });
+  const from = createUTC(new Date(req.query.from));
+  const to = createUTC(new Date(req.query.to));
+  
+  Ride.find({
+    date: { $gte: from},
+    date: { $lte: to }
   })
-  .catch((err) => next(err))
+    .populate('consumer')
+    .then(rides => {
+      res.json({
+        rides
+      });
+    })
+    .catch((err) => next(err))
 });
 
 // GET Ride by id
@@ -52,7 +61,7 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// POST Ride 
+// POST ride 
 router.post('/', (req, res, next) => {
   const { customer, pickUpDate } = req.body;
 
@@ -72,7 +81,7 @@ router.post('/', (req, res, next) => {
     .catch((err) => next(err))
 });
 
-// PUT Ride
+// PUT ride
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const ride = req.body;
@@ -85,7 +94,5 @@ router.put('/:id', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-
-
 
 module.exports = router;

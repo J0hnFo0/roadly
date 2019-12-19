@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import DatePicker from '../shared/DatePicker';
 import TaskPanel from '../shared/TaskPanel';
 import { states } from '../../utils/states';
 
@@ -9,14 +10,39 @@ class RideReport extends React.PureComponent {
         super(props)
 
         this.state = {
+            from: new Date(),
+            to: new Date(),
             rides: [],
             isError: false
         }
+
+        this.handleFrom = this.handleFrom.bind(this);
+        this.handleTo = this.handleTo.bind(this);
+        this.refresh = this.refresh.bind(this);
+    }
+
+    handleFrom = from => {
+        this.setState({
+            from
+        }, () => this.refresh());
+    }
+
+    handleTo = to => {
+        this.setState({
+            to
+        }, () => this.refresh());
     }
 
     async refresh() {
+        const from = this.state.from;
+        const to = this.state.to;
+
+        const fromUrl = from.getFullYear() + "-" + (from.getMonth() + 1) + "-" + + from.getDate()
+        const toUrl = to.getUTCFullYear() + "-" + (to.getMonth() + 1) + "-" + to.getDate()
+        const query = `from=${fromUrl}&to=${toUrl}`;
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides/all`);
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides/all?${query}`);
             const result = await response.json();
 
             this.setState({
@@ -42,12 +68,28 @@ class RideReport extends React.PureComponent {
                 </div>
 
                 <TaskPanel>
-                    <Link
-                        to="/fahrten"
-                        className="btn btn-primary mr-1"
-                    >
-                        Zurück
+                    <div className="form-row">
+                        <DatePicker
+                            date={this.state.from}
+                            onChange={this.handleFrom}
+                        />
+                        <DatePicker
+                            date={this.state.to}
+                            onChange={this.handleTo}
+                        />
+                        <button
+                            className="btn btn-primary mr-1"
+                            onClick={this.refresh}
+                        >
+                            Filtern
+                            </button>
+                        <Link
+                            to="/fahrten"
+                            className="btn btn-primary mr-1"
+                        >
+                            Zurück
                     </Link>
+                    </div>
                 </TaskPanel>
 
                 {this.renderTable()}
