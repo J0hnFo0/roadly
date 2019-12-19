@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
 import Item from './Item';
@@ -48,7 +49,12 @@ class RideList extends React.PureComponent {
                     >
                         Fahrt hinzufügen
                     </button>
-                    <button className="btn btn-primary mr-1">Fahrten anzeigen</button>
+                    <Link
+                        to="/fahrten/auswertung"
+                        className="btn btn-primary mr-1"
+                    >
+                        Fahrten anzeigen
+                    </Link>
                 </TaskPanel>
                 {this.renderCreate()}
                 {this.renderList()}
@@ -88,7 +94,7 @@ class RideList extends React.PureComponent {
         return (
             <React.Fragment>
                 <div className="pb-2 mt-4 mb-4 border-bottom">
-                    <h2>{today.toDateString()}</h2>
+                    <h2>Fahrten Heute: {today.toDateString()}</h2>
                 </div>
                 <div id="accordion" className="mb-5">
                     {rides}
