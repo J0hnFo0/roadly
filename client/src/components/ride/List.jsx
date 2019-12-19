@@ -69,7 +69,7 @@ class RideList extends React.PureComponent {
                     <div className='card-header'>Neue Fahrt hinzufügen</div>
                     <div className="card-body">
                         <Create
-                            onCreated={this.refresh()}
+                            onCreated={this.refresh}
                         />
                     </div>
                 </div>
