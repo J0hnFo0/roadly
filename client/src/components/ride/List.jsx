@@ -5,6 +5,7 @@ import TaskPanel from '../shared/TaskPanel';
 import Item from './Item';
 import Create from './Create';
 import FetchError from '../shared/FetchError';
+import { baseUrl } from '../../utils/service';
 
 class RideList extends React.PureComponent {
     constructor(props) {
@@ -17,7 +18,7 @@ class RideList extends React.PureComponent {
 
     async refresh() {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides`);
+            const response = await fetch(`${baseUrl}rides`);
             const result = await response.json();
 
             this.setState({

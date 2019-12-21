@@ -93,7 +93,7 @@ class Create extends React.Component {
 
   async fetchCars() {
     try {
-      const url = `${process.env.REACT_APP_API_BASE_URL}/api/cars/`;
+      const url = `${baseUrl}cars/`;
       const response = await fetch(url);
       const cars = response.json();
 

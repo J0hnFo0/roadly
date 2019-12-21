@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import TaskPanel from '../shared/TaskPanel';
 import { states } from '../../utils/states';
+import { baseUrl } from '../../utils/service';
 
 class RideDetails extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class RideDetails extends React.Component {
         const id = this.props.match.params.id;
 
         try {
-            const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`
+            const url = `${baseUrl}rides/${id}`
             const response = await fetch(url);
             const result = await response.json();
 
@@ -58,7 +59,7 @@ class RideDetails extends React.Component {
         const ride = this.state;
 
         try {
-            const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides/${id}`;
+            const url = `${baseUrl}rides/${id}`;
             await fetch(url, {
                 method: 'PUT',
                 headers: {

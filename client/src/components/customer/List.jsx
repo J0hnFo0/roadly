@@ -4,7 +4,7 @@ import React from 'react';
 import FetchError from '../shared/FetchError';
 import SearchInput from '../shared/SearchInput';
 import TaskPanel from '../shared/TaskPanel';
-import { baseUrl} from '../../utils/service';
+import { baseUrl } from '../../utils/service';
 
 class CustomerList extends React.Component {
   constructor(props) {
