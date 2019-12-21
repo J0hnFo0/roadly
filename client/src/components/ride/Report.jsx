@@ -5,6 +5,7 @@ import DatePicker from '../shared/DatePicker';
 import TaskPanel from '../shared/TaskPanel';
 import FetchError from '../shared/FetchError';
 import { states } from '../../utils/states';
+import { baseUrl } from '../../utils/service';
 
 class RideReport extends React.PureComponent {
     constructor(props) {
@@ -44,7 +45,7 @@ class RideReport extends React.PureComponent {
         const query = `from=${fromUrl}&to=${toUrl}`;
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/rides/all?${query}`);
+            const response = await fetch(`${baseUrl}rides/all?${query}`);
             const result = await response.json();
 
             this.setState({
