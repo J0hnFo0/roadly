@@ -5,7 +5,7 @@ const dbName = 'roadly-db';
 const mongoUri = process.env.MONGODB_URI || `mongodb://localhost/${dbName}`;
 
 // connect to db (We use connect as we only have one db)
-mongoose.connect(mongoUri, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
