@@ -1,0 +1,1 @@
+export const baseUrl = process.env.NODE_ENV === "production" ? "/api/" : process.env.REACT_APP_API_BASE_URL + "/api/";
