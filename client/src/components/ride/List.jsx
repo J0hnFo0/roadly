@@ -14,6 +14,8 @@ class RideList extends React.PureComponent {
         this.state = {
             isError: false
         }
+
+        this.refresh = this.refresh.bind(this);
     }
 
     async refresh() {
@@ -91,7 +93,7 @@ class RideList extends React.PureComponent {
     }
 
     renderList() {
-        if (!this.state.rides) {
+        if (!this.state.rides || this.state.rides.length === 0) {
             return;
         }
 

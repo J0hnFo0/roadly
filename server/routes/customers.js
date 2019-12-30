@@ -10,6 +10,7 @@ function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
+// Helper function to create UTC date without time -> TODO: Move to separate file
 function createUTC(date) {
   return new Date(
     Date.UTC(date.getUTCFullYear(), date.getMonth(), date.getDate())
@@ -107,14 +108,14 @@ router.put('/:id', (req, res, next) => {
     .catch(err => next(err));
 })
 
-// DELETE customer by id & and rides greater than day of deletion
+// DELETE customer by id and customer rides greater than day of deletion
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
 
   Customer.findByIdAndRemove(id)
     .then(() => {
       const today = createUTC(new Date());
-
+      
       Ride.deleteMany({
         consumer: id,
         date: { $gt: today}

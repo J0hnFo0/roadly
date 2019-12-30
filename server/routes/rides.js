@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Ride = require('../models/Ride');
 
-// Helper function to create UTC date without time
+// Helper function to create UTC date without time -> TODO: Move to separate file
 function createUTC(date) {
   return new Date(
     Date.UTC(date.getUTCFullYear(), date.getMonth(), date.getDate())
@@ -11,7 +11,7 @@ function createUTC(date) {
 }
 
 /* GET rides for current day. 
-   Set date to new Date('2019-12-02') to simulate pickup.
+   Set date to new Date('CHOOSE-DATE-HERE') to simulate pickup.
    Remove fixed date to use application with current date. 
    Comment state in db query to show/hide all rides.
 */
