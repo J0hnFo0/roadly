@@ -5,7 +5,7 @@ export function dateToString(date) {
     const month = dateObject.getMonth();
     const day = dateObject.getDate();
 
-    const formattedDate = `${day}/${month}/${year}`;
+    const string = `${day}/${month}/${year}`;
 
-    return formattedDate;
+    return string;
 }

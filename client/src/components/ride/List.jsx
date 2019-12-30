@@ -110,7 +110,7 @@ class RideList extends React.PureComponent {
         return ( 
             <React.Fragment>
                 <div className="pb-2 mt-4 mb-4 border-bottom">
-                    <h2>Fahrten Heute: {dateToString(today)}</h2>
+                    <h2>Offene Fahrten am: {dateToString(today)}</h2>
                 </div>
                 <div id="accordion" className="mb-5">
                     {rides}
