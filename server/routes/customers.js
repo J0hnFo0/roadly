@@ -10,6 +10,12 @@ function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
+function createUTC(date) {
+  return new Date(
+    Date.UTC(date.getUTCFullYear(), date.getMonth(), date.getDate())
+  )
+}
+
 // GET one customer by "nachname". If !nachname get list of all
 router.get('/', (req, res, next) => {
   if (req.query.nachname) {
@@ -80,7 +86,7 @@ router.post('/', (req, res, next) => {
         ride.date = pickUpDate.setDate(
           pickUpDate.getDate() + customer.interval * 7
         );
-        
+
         Ride.create(ride);
       }
 
@@ -101,15 +107,23 @@ router.put('/:id', (req, res, next) => {
     .catch(err => next(err));
 })
 
-// DELETE customer by id 
+// DELETE customer by id & and rides greater than day of deletion
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
 
   Customer.findByIdAndRemove(id)
     .then(() => {
-      res.json({
-        success: true
-      });
+      const today = createUTC(new Date());
+
+      Ride.deleteMany({
+        consumer: id,
+        date: { $gt: today}
+      })
+        .then(() => {
+          res.json({
+            success: true
+          });
+        });
     })
     .catch(err => next(err));
 })
