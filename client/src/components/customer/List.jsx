@@ -75,25 +75,22 @@ class CustomerList extends React.Component {
           onSearch={this.refresh}
           query={state.query}
         />
-        {this.renderList()}
+        {state.isError ? this.renderFetchError() : this.renderList()}
       </div>
     );
+  }
+
+  renderFetchError() {
+    return <FetchError />
   }
 
   renderList() {
     const list = this.state.list;
 
-    if (this.state.isError) {
-      return (
-        <FetchError />
-      )
-    }
-
     if (!list[0]) {
       return (
         <div className='alert alert-info text-center' role='alert'>
-          Zu dem angegebenen Suchbgeriff konnte kein Ergebnis gefunden werden. Bitte beachten Sie Groß- und Kleinschreibung.
-          Oder führen sie eine leere Suche aus um eine Liste aller Ergebnisse zu erhalten.
+          Zu dem angegebenen Suchbgeriff konnte kein Ergebnis gefunden werden.
       </div>
       )
     }
