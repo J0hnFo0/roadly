@@ -6,6 +6,7 @@ import TaskPanel from '../shared/TaskPanel';
 import FetchError from '../shared/FetchError';
 import { states } from '../../utils/states';
 import { baseUrl } from '../../utils/service';
+import { dateToString } from '../../utils/format-date';
 
 class RideReport extends React.PureComponent {
     constructor(props) {
@@ -148,7 +149,7 @@ class RideReport extends React.PureComponent {
                     <td>{x.consumer.adress.street} {x.consumer.adress.number}</td>
                     <td>{x.quantity}</td>
                     <td>{x.consumer.interval}</td>
-                    <td>{x.date}</td>
+                    <td>{dateToString(x.date)}</td>
                     <td>{states[x.state]}</td>
                     <td>
                         <Link
