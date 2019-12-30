@@ -70,10 +70,17 @@ router.post('/', (req, res, next) => {
       );
 
       for (let i = 0; i < pickUpsPerYear; i++) {
+        if (i === 0) {
+          ride.date = pickUpDate.setDate(pickUpDate.getDate());
+          Ride.create(ride);
+
+          continue;
+        }
+
         ride.date = pickUpDate.setDate(
           pickUpDate.getDate() + customer.interval * 7
         );
-
+        
         Ride.create(ride);
       }
 

@@ -116,6 +116,7 @@ class RideReport extends React.PureComponent {
                         <th>Adresse</th>
                         <th>m³</th>
                         <th>Interv.</th>
+                        <th>Datum</th>
                         <th>Status</th>
                         <th>Auswahl</th>
                     </thead>
@@ -147,6 +148,7 @@ class RideReport extends React.PureComponent {
                     <td>{x.consumer.adress.street} {x.consumer.adress.number}</td>
                     <td>{x.quantity}</td>
                     <td>{x.consumer.interval}</td>
+                    <td>{x.date}</td>
                     <td>{states[x.state]}</td>
                     <td>
                         <Link
