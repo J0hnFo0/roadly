@@ -60,7 +60,7 @@ class CustomerList extends React.Component {
     return (
       <div className='container'>
         <div className='pb-2 mt-4 mb-4 border-bottom'>
-          <h1>Roadly - Next Level Fahrtenmanagement</h1>
+          <h1>Abwasser Express</h1>
         </div>
 
         <TaskPanel>
