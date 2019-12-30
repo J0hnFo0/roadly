@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 import FetchError from '../shared/FetchError';
 import Form from './Form';
+import { baseUrl } from '../../utils/service';
 
 class Create extends React.Component {
   constructor(props) {
@@ -69,7 +70,7 @@ class Create extends React.Component {
     };
 
     try {
-      const url = `${process.env.REACT_APP_API_BASE_URL}/api/customers/`;
+      const url = `${baseUrl}customers/`;
       await fetch(url, {
         method: 'POST',
         headers: {
@@ -92,7 +93,7 @@ class Create extends React.Component {
 
   async fetchCars() {
     try {
-      const url = `${process.env.REACT_APP_API_BASE_URL}/api/cars/`;
+      const url = `${baseUrl}cars/`;
       const response = await fetch(url);
       const cars = response.json();
 

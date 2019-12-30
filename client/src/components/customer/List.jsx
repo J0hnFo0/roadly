@@ -4,6 +4,7 @@ import React from 'react';
 import FetchError from '../shared/FetchError';
 import SearchInput from '../shared/SearchInput';
 import TaskPanel from '../shared/TaskPanel';
+import { baseUrl } from '../../utils/service';
 
 class CustomerList extends React.Component {
   constructor(props) {
@@ -21,9 +22,9 @@ class CustomerList extends React.Component {
 
   async refresh() {
     const query = this.state.query;
-
+    console.log("baseUrl", baseUrl)
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/customers?nachname=${query}`)
+      const response = await fetch(`${baseUrl}customers?nachname=${query}`)
       const list = await response.json()
 
       if (!list) {

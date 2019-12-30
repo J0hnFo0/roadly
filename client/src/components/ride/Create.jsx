@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import DatePicker from '../shared/DatePicker';
+import { baseUrl } from '../../utils/service';
 
 class CreateRide extends React.PureComponent {
     constructor(props) {
@@ -37,7 +37,7 @@ class CreateRide extends React.PureComponent {
 
     async fetchCustomers() {
         try {
-            const url = `${process.env.REACT_APP_API_BASE_URL}/api/customers?nachname=`;
+            const url = `${baseUrl}customers?nachname=`;
             const response = await fetch(url);
             const customers = await response.json();
 
@@ -67,7 +67,7 @@ class CreateRide extends React.PureComponent {
         }
 
         try {
-            const url = `${process.env.REACT_APP_API_BASE_URL}/api/rides`;
+            const url = `${baseUrl}rides`;
             await fetch(url, {
                 method: 'POST',
                 headers: {
