@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Item = (props) => {
     return (
-        <div class="card">
-            <div class="card-header" id={"header-" + props.index}>
-                <h5 class="mb-0">
+        <div className="card">
+            <div className="card-header" id={"header-" + props.index}>
+                <h5 className="mb-0">
                     <button
-                        class="btn btn-link"
+                        className="btn btn-link"
                         data-toggle="collapse"
                         data-target={"#collapse-" + props.index}
                         aria-expanded="true"
@@ -24,7 +24,7 @@ const Item = (props) => {
 
             <div
                 id={"collapse-" + props.index}
-                class="collapse"
+                className="collapse"
                 aria-labelledby={"header-" + props.index}
                 data-parent="#accordion"
             >
