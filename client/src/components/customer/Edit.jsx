@@ -5,6 +5,7 @@ import FetchError from '../shared/FetchError';
 import Form from './Form';
 import { baseUrl } from '../../utils/service';
 import { dateToString } from '../../utils/format-date';
+import { states } from '../../utils/states';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class Edit extends React.Component {
     const id = this.state.id;
 
     try {
-      const response = await fetch(`${baseUrl}consumer/${id}`);
+      const response = await fetch(`${baseUrl}rides/consumer/${id}`);
       const rides = await response.json();
 
       this.setState(rides);
@@ -161,8 +162,9 @@ class Edit extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.fetchCustomer();
+  async componentDidMount() {
+    await this.fetchCustomer();
+    this.fetchRides();
   }
 
   render() {
@@ -173,10 +175,20 @@ class Edit extends React.Component {
         </div>
         {this.state.isError
           ? <FetchError />
-          : this.renderForm() && this.renderUpComingRides()
+          : this.renderContent()
+
         }
       </div>
     );
+  }
+
+  renderContent() {
+    return (
+      <React.Fragment>
+        {this.renderForm()}
+        {this.renderRides()}
+      </React.Fragment>
+    )
   }
 
   renderForm() {
@@ -214,7 +226,7 @@ class Edit extends React.Component {
     );
   }
 
-  renderUpComingRides() {
+  renderRides() {
     if (!this.state.rides) {
       return;
     }
