@@ -17,14 +17,20 @@ function createUTC(date) {
   )
 }
 
-// GET one customer by "nachname". If !nachname get list of all
+// GET one customer by search value (first name, last name, company name). If !value get list of all customers.
 router.get('/', (req, res, next) => {
-  if (req.query.nachname) {
-    const lastName = req.query.nachname;
+  if (req.query.value) {
+    const value = req.query.value;
+    
+    const query = {
+      $or: [
+        { 'name.first': { $regex: escapeRegex(value), $options: 'i' } },
+        { 'name.last': { $regex: escapeRegex(value), $options: 'i ' } },
+        { 'company': { $regex: escapeRegex(value), $options: 'i' } }
+      ]
+    }
 
-    Customer.find({
-      'name.last': { $regex: escapeRegex(lastName), $options: 'i ' }
-    })
+    Customer.find(query)
       .then(data => {
         res.json(data);
       })
@@ -115,10 +121,10 @@ router.delete('/:id', (req, res, next) => {
   Customer.findByIdAndRemove(id)
     .then(() => {
       const today = createUTC(new Date());
-      
+
       Ride.deleteMany({
         consumer: id,
-        date: { $gt: today}
+        date: { $gt: today }
       })
         .then(() => {
           res.json({
