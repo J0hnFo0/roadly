@@ -63,7 +63,7 @@ router.get('/:id', (req, res, next) => {
 
 // GET rides for one consumer based on consumer id
 router.get('/consumer/:id', (req, res, next) => {
-  const id = req.body.id;
+  const id = req.params.id;
 
   Ride.find({ consumer: id })
     .then(rides => {

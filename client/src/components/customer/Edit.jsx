@@ -18,7 +18,7 @@ class Edit extends React.Component {
     }
 
     this.delete = this.delete.bind(this);
-    this.getCustomer = this.getCustomer.bind(this);
+    this.fetchCustomer = this.fetchCustomer.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +37,7 @@ class Edit extends React.Component {
     });
   }
 
-  async getCustomer() {
+  async fetchCustomer() {
     const id = this.props.id;
 
     try {
@@ -54,7 +54,7 @@ class Edit extends React.Component {
         number: customer.adress.number,
         city: customer.adress.city,
         zipcode: customer.adress.zipcode,
-        startDate: customer.startDate, 
+        startDate: customer.startDate,
         tavArea: customer.tavArea,
         pitSize: customer.pitSize,
         interval: customer.interval,
@@ -65,6 +65,22 @@ class Edit extends React.Component {
     } catch {
       this.setState({
         isError: true,
+      });
+    }
+  }
+
+  async fetchRides() {
+    const id = this.state.id;
+
+    try {
+      const response = await fetch(`${baseUrl}consumer/${id}`);
+      const rides = await response.json();
+
+      this.setState(rides);
+
+    } catch {
+      this.setState({
+        isError: true
       });
     }
   }
@@ -145,7 +161,7 @@ class Edit extends React.Component {
   }
 
   componentDidMount() {
-    this.getCustomer();
+    this.fetchCustomer();
   }
 
   render() {
@@ -154,7 +170,10 @@ class Edit extends React.Component {
         <div className="pb-2 mt-4 mb-4 border-bottom">
           <h1>Kundendaten bearbeiten</h1>
         </div>
-        {this.state.isError ? <FetchError />: this.renderForm()}
+        {this.state.isError
+          ? <FetchError />
+          : this.renderForm() && this.renderUpComingRides()
+        }
       </div>
     );
   }
@@ -191,6 +210,29 @@ class Edit extends React.Component {
           handleDelete={this.delete}
         />
       </React.Fragment>
+    );
+  }
+
+  renderUpComingRides() {
+    return (
+      <div className="table">
+        <table className="table">
+          <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Ort</th>
+            <th>Adresse</th>
+            <th>m³</th>
+            <th>Interv.</th>
+            <th>Datum</th>
+            <th>Status</th>
+            <th>Auswahl</th>
+          </thead>
+          <tbody>
+            LOL
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
