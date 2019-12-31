@@ -35,9 +35,9 @@ router.get('/', (req, res, next) => {
 router.get('/all', (req, res, next) => {
   const from = createUTC(new Date(req.query.from));
   const to = createUTC(new Date(req.query.to));
-  
+
   Ride.find({
-    date: { $gte: from},
+    date: { $gte: from },
     date: { $lte: to }
   })
     .populate('consumer')
@@ -57,6 +57,19 @@ router.get('/:id', (req, res, next) => {
     .populate('consumer')
     .then(ride => {
       res.json(ride);
+    })
+    .catch(err => next(err));
+});
+
+// GET rides for one consumer based on consumer id
+router.get('/consumer/:id', (req, res, next) => {
+  const id = req.body.id;
+
+  Ride.find({ consumer: id })
+    .then(rides => {
+      res.json({
+        rides
+      });
     })
     .catch(err => next(err));
 });
