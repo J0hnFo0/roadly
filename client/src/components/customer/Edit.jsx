@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import FetchError from '../shared/FetchError';
 import Form from './Form';
 import { baseUrl } from '../../utils/service';
+import { dateToString } from '../../utils/format-date';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -214,22 +215,31 @@ class Edit extends React.Component {
   }
 
   renderUpComingRides() {
+    if (!this.state.rides) {
+      return;
+    }
+
+    const rides = this.state.rides.map((i, x) =>
+      <React.Fragment>
+        <tr id={i}>
+          <td>{i + 1}</td>
+          <td>{dateToString(x.date)}</td>
+          <td>{states[x.state]}</td>
+        </tr>
+      </React.Fragment>
+    )
+
+
     return (
       <div className="table">
         <table className="table">
           <thead>
             <th>#</th>
-            <th>Name</th>
-            <th>Ort</th>
-            <th>Adresse</th>
-            <th>m³</th>
-            <th>Interv.</th>
             <th>Datum</th>
             <th>Status</th>
-            <th>Auswahl</th>
           </thead>
           <tbody>
-            LOL
+            {rides}
           </tbody>
         </table>
       </div>
