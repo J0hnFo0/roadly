@@ -185,8 +185,13 @@ class Edit extends React.Component {
   renderContent() {
     return (
       <React.Fragment>
-        {this.renderForm()}
-        {this.renderRides()}
+        <div className="mb-3">
+          {this.renderForm()}
+         <hr /> 
+        </div>
+        <div className="mb-5">
+          {this.renderRides()}
+        </div>
       </React.Fragment>
     )
   }
@@ -231,30 +236,32 @@ class Edit extends React.Component {
       return;
     }
 
-    const rides = this.state.rides.map((i, x) =>
+    const rides = this.state.rides.map((x, i) =>
       <React.Fragment>
         <tr id={i}>
-          <td>{i + 1}</td>
+          <td>{i}</td>
           <td>{dateToString(x.date)}</td>
           <td>{states[x.state]}</td>
         </tr>
       </React.Fragment>
-    )
-
+    );
 
     return (
-      <div className="table">
-        <table className="table">
-          <thead>
-            <th>#</th>
-            <th>Datum</th>
-            <th>Status</th>
-          </thead>
-          <tbody>
-            {rides}
-          </tbody>
-        </table>
-      </div>
+      <React.Fragment>
+        <h4>Bevorstehende Abholungen</h4>
+        <div className="table">
+          <table className="table">
+            <thead>
+              <th>#</th>
+              <th>Datum</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              {rides}
+            </tbody>
+          </table>
+        </div>
+      </React.Fragment>
     );
   }
 }
