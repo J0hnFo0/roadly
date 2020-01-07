@@ -1,14 +1,22 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
+
+import CarIndex from './components/car/Index';
 import CustomerIndex from './components/customer/Index';
 import RidesIndex from './components/ride/Index';
+import Navigation from './components/shared/Navigation';
+
+import "./App.scss";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.renderContent()}
+        <Navigation />
+        <div id="content">
+          {this.renderContent()}
+        </div>
       </div>
     );
   }
@@ -17,8 +25,15 @@ class App extends React.Component {
     return (
       <Switch>
         <Route path="/fahrten" render={this.renderRides} />
+        <Route path="/fahrzeuge" render={this.renderCars} />
         <Route path="/" render={this.renderCustomers} />
       </Switch>
+    );
+  }
+
+  renderCars() {
+    return (
+      <CarIndex />
     );
   }
 

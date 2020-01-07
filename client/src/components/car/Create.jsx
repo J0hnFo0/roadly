@@ -10,21 +10,15 @@ class Create extends React.Component {
     super(props)
 
     this.state = {
-      sex: 0,
-      nameFirst: '',
-      nameLast: '',
-      street: '',
-      number: '',
-      city: '',
-      zipcode: '',
-      startDate: new Date(),
+      name: '',
+      brand: '',
+      license: '',
 
       isError: false,
       isSaved: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleDate = this.handleDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -37,46 +31,25 @@ class Create extends React.Component {
     this.setState(value);
   }
 
-  handleDate = date => {
-    this.setState({
-      startDate: date
-    });
-  };
-
   async handleSubmit(e) {
     e.preventDefault();
 
     const state = this.state;
-    const customer = {
-      company: state.company,
-      name: {
-        first: state.nameFirst,
-        last: state.nameLast,
-      },
-      customerNumber: state.customerNumber,
-      adress: {
-        street: state.street,
-        number: state.number,
-        city: state.city,
-        zipcode: state.zipcode,
-      },
-      startDate: state.startDate,
-      tavArea: state.tavArea,
-      pitSize: state.pitSize,
-      interval: state.interval,
-      car: state.car,
-      notes: state.notes,
+    const car = {
+      name: state.name,
+      brand: state.brand,
+      license: state.license
     };
 
-    const url = `${baseUrl}customers/`;
+    const url = `${baseUrl}cars/`;
     await fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(customer)
-    }).then((response, customerObj) => {
+      body: JSON.stringify(car)
+    }).then((response, carObj) => {
       if (response.status === 200) {
         this.setState({
           isError: false,
@@ -118,7 +91,7 @@ class Create extends React.Component {
 
     if (isSaved) {
       return (
-        <Redirect to='/' />
+        <Redirect to='/fahrzeuge' />
       );
     }
   }
@@ -131,7 +104,7 @@ class Create extends React.Component {
     return (
       <div className='container'>
         <div className='pb-2 mt-4 mb-4 border-bottom'>
-          <h1>Kunden anlegen</h1>
+          <h1>Fahrzeug anlegen</h1>
         </div>
         {this.state.isError ? <FetchError /> : this.renderForm()}
       </div>
@@ -146,28 +119,11 @@ class Create extends React.Component {
         {this.redirect()}
         <Form
           id={state.id}
-          company={state.company}
-          nameFirst={state.nameFirst}
-          nameLast={state.nameLast}
-          customerNumber={state.customerNumber}
-          street={state.street}
-          number={state.number}
-          city={state.city}
-          zipcode={state.zipcode}
-          startDate={state.startDate}
-          tavArea={state.tavArea}
-          pitSize={state.pitSize}
-          interval={state.interval}
-          cars={state.cars}
-          notes={state.notes}
 
           handleChange={this.handleChange}
-          handleDate={this.handleDate}
           handleSubmit={this.handleSubmit}
         />
       </React.Fragment>
-
-
     );
   }
 }

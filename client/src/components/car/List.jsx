@@ -6,7 +6,7 @@ import SearchInput from '../shared/SearchInput';
 import TaskPanel from '../shared/TaskPanel';
 import { baseUrl } from '../../utils/service';
 
-class CustomerList extends React.Component {
+class CarList extends React.Component {
   constructor(props) {
     super(props)
 
@@ -24,7 +24,7 @@ class CustomerList extends React.Component {
     const query = this.state.query;
     console.log("baseUrl", baseUrl)
     try {
-      const response = await fetch(`${baseUrl}customers?value=${query}`)
+      const response = await fetch(`${baseUrl}/cars`)
       const list = await response.json()
 
       if (!list) {
@@ -60,15 +60,15 @@ class CustomerList extends React.Component {
     return (
       <div className='container'>
         <div className='pb-2 mt-4 mb-4 border-bottom'>
-          <h2>Kunden</h2>
+          <h2>Fahrzeuge</h2>
         </div>
 
         <TaskPanel>
           <Link
             className='btn btn-primary'
-            to='/bearbeiten'
+            to='/fahrzeuge/erstellen'
           >
-            Kunden anlegen
+            Fahrzeug anlegen
           </Link>
         </TaskPanel>
         <SearchInput
@@ -129,4 +129,4 @@ class CustomerList extends React.Component {
   }
 }
 
-export default CustomerList;
+export default CarList;

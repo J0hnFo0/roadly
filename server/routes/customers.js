@@ -21,7 +21,6 @@ function createUTC(date) {
 router.get('/', (req, res, next) => {
   if (req.query.value) {
     const value = req.query.value;
-    
     const query = {
       $or: [
         { 'name.first': { $regex: escapeRegex(value), $options: 'i' } },
@@ -45,7 +44,7 @@ router.get('/', (req, res, next) => {
   }
 });
 
-// GET one customer by id 
+// GET one customer by id
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
 
@@ -63,9 +62,7 @@ router.post('/', (req, res, next) => {
   new Customer(newCustomer)
     .save()
     .then((customer) => {
-
-      let pickUpsPerYear = 365 / (customer.interval * 7);
-
+      const pickUpsPerYear = 365 / (customer.interval * 7);
       let ride = {
         consumer: customer._id,
         quantity: 0,
@@ -99,10 +96,12 @@ router.post('/', (req, res, next) => {
 
       res.json(customer);
     })
-    .catch(err => next(err));
+    .catch(err => {
+      res.status(500).json(JSON.stringify(err));
+    });
 });
 
-// PUT customer update by id 
+// PUT customer update by id
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const customer = req.body;
