@@ -247,7 +247,7 @@ class Edit extends React.Component {
 
     return (
       <React.Fragment>
-        <h4>Bevorstehende Abholungen</h4>
+        <h4>Abholungen</h4>
         <div className="table">
           <table className="table">
             <thead>
