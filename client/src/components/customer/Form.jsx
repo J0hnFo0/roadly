@@ -184,6 +184,7 @@ class CustomerForm extends React.PureComponent {
                   type='number'
                   className='form-control'
                   id='pitSize'
+                  min="0"
                   value={props.pitSize}
                   onChange={props.handleChange}
                   required={true}
@@ -196,11 +197,12 @@ class CustomerForm extends React.PureComponent {
           </div>
           <div className="form-row">
             <div className='form-group col-md-6'>
-              <label htmlFor='interval'>Intervall</label>
+              <label htmlFor='interval'>Intervall in Wochen</label>
               <input
                 type='number'
                 className='form-control'
                 id='interval'
+                min="0"
                 value={props.interval}
                 onChange={props.handleChange}
                 required={true}
