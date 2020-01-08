@@ -36,10 +36,14 @@ router.get('/all', (req, res, next) => {
   const from = createUTC(new Date(req.query.from));
   const to = createUTC(new Date(req.query.to));
 
-  Ride.find({
-    date: { $gte: from },
-    date: { $lte: to }
-  })
+  const query = {
+    $and: [
+      { 'date': { $gte: from } },
+      { 'date': { $lte: to } }
+    ]
+  }
+
+  Ride.find(query)
     .populate('consumer')
     .then(rides => {
       res.json({
