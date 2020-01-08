@@ -110,6 +110,7 @@ class CustomerForm extends React.PureComponent {
                 type='number'
                 className='form-control'
                 id='number'
+                min="0"
                 value={props.number}
                 onChange={props.handleChange}
                 required={true}
@@ -120,7 +121,7 @@ class CustomerForm extends React.PureComponent {
             <div className='form-group col-md-4'>
               <label htmlFor='zipcode'>Postleitzahl</label>
               <input
-                type='number'
+                type='text'
                 className='form-control'
                 id='zipcode'
                 value={props.zipcode}
@@ -151,6 +152,7 @@ class CustomerForm extends React.PureComponent {
               type='number'
               className='form-control'
               id='tavArea'
+              min="0"
               value={props.tavArea}
               onChange={props.handleChange}
               required={true}
