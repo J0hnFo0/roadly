@@ -6,7 +6,6 @@ import Item from './Item';
 import Create from './Create';
 import FetchError from '../shared/FetchError';
 import { baseUrl } from '../../utils/service';
-import { dateToString } from '../../utils/format-date';
 
 class RideList extends React.PureComponent {
     constructor(props) {
@@ -110,7 +109,7 @@ class RideList extends React.PureComponent {
         return ( 
             <React.Fragment>
                 <div className="pb-2 mt-4 mb-4 border-bottom">
-                    <h2>Offene Fahrten am: {dateToString(today)}</h2>
+                    <h2>Offene Fahrten am: {new Date(today).toLocaleDateString()}</h2>
                 </div>
                 <div id="accordion" className="mb-5">
                     {rides}

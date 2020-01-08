@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import FetchError from '../shared/FetchError';
 import Form from './Form';
 import { baseUrl } from '../../utils/service';
-import { dateToString } from '../../utils/format-date';
 import { states } from '../../utils/states';
 
 class Edit extends React.Component {
@@ -240,7 +239,7 @@ class Edit extends React.Component {
       <React.Fragment>
         <tr id={i}>
           <td>{i}</td>
-          <td>{dateToString(x.date)}</td>
+          <td>{new Date(x.date).toLocaleDateString()}</td>
           <td>{states[x.state]}</td>
         </tr>
       </React.Fragment>
