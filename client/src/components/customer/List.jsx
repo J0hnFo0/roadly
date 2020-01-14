@@ -22,7 +22,6 @@ class CustomerList extends React.Component {
 
   async refresh() {
     const query = this.state.query;
-    console.log("baseUrl", baseUrl)
     try {
       const response = await fetch(`${baseUrl}customers?value=${query}`)
       const list = await response.json()

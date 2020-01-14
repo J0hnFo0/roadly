@@ -28,7 +28,7 @@ class Edit extends React.Component {
   async delete() {
     const id = this.props.id;
 
-    const url = `${baseUrl}cars/${id}`;
+    const url = `${baseUrl}cars${id}`;
     await fetch(url, {
       method: 'DELETE',
     });
@@ -166,14 +166,14 @@ class Edit extends React.Component {
   }
 
   renderForm() {
-    const state = this.state;
-
     return (
       <React.Fragment>
         {this.redirect()}
         <Form
-          id={state.id}
-
+          id={this.state.id}
+          name={this.state.name}
+          brand={this.state.brand}
+          license={this.state.license}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />

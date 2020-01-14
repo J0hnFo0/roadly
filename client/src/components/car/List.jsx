@@ -22,9 +22,9 @@ class CarList extends React.Component {
 
   async refresh() {
     const query = this.state.query;
-    console.log("baseUrl", baseUrl)
+
     try {
-      const response = await fetch(`${baseUrl}/cars`)
+      const response = await fetch(`${baseUrl}cars?value=${query}`)
       const list = await response.json()
 
       if (!list) {
@@ -98,12 +98,12 @@ class CarList extends React.Component {
 
     const mappedList = list.map((x, i) =>
       <tr key={`custommer-table-row-${i}`}>
-        <td>{x.name.first}</td>
-        <td>{x.name.last}</td>
-        <td>{x.adress.city}</td>
+        <td>{x.name}</td>
+        <td>{x.brand}</td>
+        <td>{x.license}</td>
         <td>
           <Link
-            to={`/bearbeiten/${x._id}`}
+            to={`/fahrzeuge/bearbeiten/${x._id}`}
             className='btn btn-primary'>
             Anzeigen
           </Link>
@@ -115,10 +115,10 @@ class CarList extends React.Component {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Stadt</th>
-            <th>Auswahl</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Lizenz</th>
+            <th>Aktionen</th>
           </tr>
         </thead>
         <tbody>

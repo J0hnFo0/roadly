@@ -4,11 +4,7 @@ const router = express.Router();
 // Require models
 const Customer = require('../models/Customer');
 const Ride = require('../models/Ride');
-
-// Helper function to escape regex
-function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+const RoutesHelper = require('../helper/routes');
 
 // Helper function to create UTC date without time -> TODO: Move to separate file
 function createUTC(date) {
@@ -21,13 +17,10 @@ function createUTC(date) {
 router.get('/', (req, res, next) => {
   if (req.query.value) {
     const value = req.query.value;
-    const query = {
-      $or: [
-        { 'name.first': { $regex: escapeRegex(value), $options: 'i' } },
-        { 'name.last': { $regex: escapeRegex(value), $options: 'i ' } },
-        { 'company': { $regex: escapeRegex(value), $options: 'i' } }
-      ]
-    }
+    const query = RoutesHelper.buildSearchQuery({
+      fields: ['name.first', 'name.last', 'company'],
+      value: value
+    });
 
     Customer.find(query)
       .then(data => {
