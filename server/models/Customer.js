@@ -17,7 +17,7 @@ const CustomerSchema = new mongoose.Schema({
   startDate: { type: Date },
   tavArea: { type: String },
   pitSize: { type: Number},
-  interval: { type: Number }, 
+  interval: { type: Number },
   car: { type: Schema.Types.ObjectId, ref: 'Car' },
   notes: { type: String },
 },

@@ -20,13 +20,11 @@ class RideList extends React.PureComponent {
 
     async refresh() {
         try {
-            const response = await fetch(`${baseUrl}rides`);
-            const result = await response.json();
+          const response = await fetch(`${baseUrl}rides`);
+          const result = await response.json();
+          const filteredRides = result.rides.filter((ride) => { return ride.consumer !== null; });
 
-            this.setState({
-                rides: result.rides
-            });
-
+          this.setState({ rides: filteredRides });
         } catch {
             this.setState({
                 isError: true
@@ -42,7 +40,7 @@ class RideList extends React.PureComponent {
         return (
             <div className="container">
                 <div className="pb-2 mt-4 mb-4 border-bottom">
-                    <h1>Fahrtenliste</h1>
+                    <h2>Fahrten</h2>
                 </div>
                 <TaskPanel>
                     <button
@@ -106,7 +104,7 @@ class RideList extends React.PureComponent {
         )
 
         const today = new Date();
-        return ( 
+        return (
             <React.Fragment>
                 <div className="pb-2 mt-4 mb-4 border-bottom">
                     <h2>Offene Fahrten am: {new Date(today).toLocaleDateString()}</h2>

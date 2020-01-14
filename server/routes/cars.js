@@ -32,7 +32,9 @@ router.post('/', (req, res, next) => {
         .then(car => {
             res.json(car);
         })
-        .catch(err => next(err));
+    .catch(err => {
+      res.status(500).json(JSON.stringify(err));
+    });
 });
 
 // PUT car by id
