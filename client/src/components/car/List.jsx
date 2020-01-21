@@ -116,8 +116,8 @@ class CarList extends React.Component {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Brand</th>
-            <th>Lizenz</th>
+            <th>Hersteller</th>
+            <th>KFZ-Kennzeichen</th>
             <th>Aktionen</th>
           </tr>
         </thead>

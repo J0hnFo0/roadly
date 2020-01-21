@@ -59,22 +59,6 @@ class Edit extends React.Component {
     }
   }
 
-  async fetchRides() {
-    const id = this.state.id;
-
-    try {
-      const response = await fetch(`${baseUrl}rides/consumer/${id}`);
-      const rides = await response.json();
-
-      this.setState(rides);
-
-    } catch {
-      this.setState({
-        isError: true
-      });
-    }
-  }
-
   handleChange(e) {
     e.preventDefault();
 
@@ -137,7 +121,6 @@ class Edit extends React.Component {
 
   async componentDidMount() {
     await this.fetchCar();
-    this.fetchRides();
   }
 
   render() {

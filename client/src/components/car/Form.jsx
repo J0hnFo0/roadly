@@ -35,7 +35,7 @@ class CarForm extends React.PureComponent {
         </div>
         <div className='form-row'>
           <div className='form-group col-md-6'>
-            <label htmlFor='carBrand'>Marke</label>
+            <label htmlFor='carBrand'>Hersteller</label>
             <input
               type='text'
               id='brand'
@@ -47,7 +47,7 @@ class CarForm extends React.PureComponent {
           </div>
 
           <div className='form-group col-md-6'>
-            <label htmlFor='license'>Lizenz-Nummer</label>
+            <label htmlFor='license'>KFZ-Kennzeichen</label>
             <input
               type='text'
               className='form-control'
@@ -72,7 +72,7 @@ class CarForm extends React.PureComponent {
           Übernehmen
         </button>
         <Link
-          to='/'
+          to='/fahrzeuge'
           className='btn btn-secondary mr-2'
         >
           Abbrechen
