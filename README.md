@@ -24,7 +24,16 @@ Client:
 </ul>
 
 <h2>Setup end Execution</h2>
+
+<p>Install the current version of Node.js on your computer.</p>
+
+<p>Install the current version of MongoDB on your compuer.</p>
 <ul>
+  <li>For Windows OS: Install as a service</li>
+  <li>For Linux OS: After installation start MongoDB service by opening a terminal and type <i>mongod</i>
+</ul>
+
+<ul>  
 <li>Fork and clone this repository</li>
 
 <li>Install server dependencies with <i>server/npm i</i></li>
