@@ -25,7 +25,7 @@ The project has a client and server side.
 <li>React</li>
 </ul>
 
-<h2>Setup end Execution</h2>
+<h2>Setup and Execution</h2>
 
 Fork and clone this repository to your local machine.
 
