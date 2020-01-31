@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  mongodb:
+    image: mongo:4.2.2
+    ports:
+      - 27017:27017
+    volumes:
+      - "./tmp/data/mongodb:/data/db"
+
+  server:
+    build:
+      context: ./server
+    environment:
+      MONGODB_URI: "mongodb://mongodb:27017/abwasser-express-db"
+      WAIT_HOSTS: "mongodb:27017"
+    ports:
+      - 3036:3036
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+
+  client:
+    build:
+      context: ./client
+    environment:
+      REACT_APP_API_BASE_URL: "http://127.0.0.1:3036"
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+
+volumes:
+  mongodb:

@@ -1,7 +1,7 @@
 'use-strict';
 
 const mongoose = require('mongoose');
-const dbName = 'roadly-db';
+const dbName = 'abwasser-express-db';
 const mongoUri = process.env.MONGODB_URI || `mongodb://localhost/${dbName}`;
 
 // connect to db (We use connect as we only have one db)

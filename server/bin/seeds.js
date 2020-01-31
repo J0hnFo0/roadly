@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Customer = require('../models/Customer');
 
-const dbName = 'roadly-db';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+const dbName = 'abwasser-express-db';
+mongoose.connect((process.env.MONGODB_URI || `mongodb://localhost/${dbName}`), { useNewUrlParser: true });
 
 const firstCustomers = [
-    {   
+    {
         company: 'Die Mannschaft GmbH',
         name: {
             first: 'Lothar',
